@@ -53,3 +53,14 @@
     font-size: 14px;
   }
   
+  @media (min-width:768px) {
+    .container {
+     
+     border: 0.5px solid lightgrey;
+     border-radius: 10px;
+     min-height: 100px;
+    }
+    .container:hover {
+      background-color:whitesmoke;
+    }
+  }

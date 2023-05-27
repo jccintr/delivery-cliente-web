@@ -2,6 +2,10 @@
  
 }
 
+.items {
+
+}
+
 .tituloCategoria {
     width: 100%;
     margin-bottom: 0;
@@ -30,4 +34,25 @@
   input:focus {
     outline: none !important;
     border-width: 2px;
+  }
+
+  .noRecords {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+  }
+
+  @media (min-width:768px) {
+    .items {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap:10px;
+      margin-top: 10px;
+      justify-items: center;
+      align-items: center;
+    }
   }
