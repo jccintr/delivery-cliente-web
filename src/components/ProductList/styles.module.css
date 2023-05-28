@@ -1,5 +1,5 @@
 .container {
- 
+
 }
 
 .items {
@@ -10,7 +10,7 @@
     width: 100%;
     margin-bottom: 0;
     text-align: left;
-    border-bottom: 2px solid #dd1f26;
+    border-bottom: 2px solid #f6a800;
   }
 
   .containerInput {
@@ -43,6 +43,7 @@
     text-align: center;
     color: red;
     font-weight: bold;
+    
   }
 
   @media (min-width:768px) {

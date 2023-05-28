@@ -11,7 +11,6 @@ const Content = () => {
 
   const onClearClick = () => {
     setSearch('');
-   
     setProdutos(produtosBackup);
   }
 
@@ -26,11 +25,11 @@ const Content = () => {
 
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
         <CategoryList categorias={categorias}/>
         <SearchField onChange={onchangeInput} search={search} onClearClick={onClearClick}/>
         <ProductList produtos={produtos}/>
-    </div>
+    </main>
   )
 }
 

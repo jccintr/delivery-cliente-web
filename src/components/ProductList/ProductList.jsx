@@ -8,12 +8,8 @@ import ProductCard from '../ProductCard/ProductCard';
 
 const ProductList = ({produtos}) => {
     
-    const {categorias,produtosBackup,setProdutos} = useContext(DataContext);
+    const {categorias} = useContext(DataContext);
     
-
-
-    
-
     const TituloCategoria = ({categoria}) => {
 
           const arr = produtos.filter(
@@ -33,7 +29,7 @@ const ProductList = ({produtos}) => {
   return (
     <div className={styles.container}>
        
-       {produtos.length===0 ? <p className={styles.noRecords}>Nenhum item encontrado</p>:""}
+       {produtos.length===0 ? <p className={styles.noRecords}>Produtos não encontrados.</p>:""}
 
         {categorias.map((categoria) => (
                 <div  key={categoria.id}>

@@ -1,0 +1,130 @@
+.container {
+  background-color:white;
+  position:absolute; 
+  top:122px; 
+  bottom:50px; 
+  left:0px; 
+  right:0px;
+  overflow:auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+
+}
+.corpo {
+    width: 360px;
+   
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+  
+  .linhaNome {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    
+  }
+  
+  .nome {
+    color: black;
+    text-align: left;
+    width: 300px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .imagemProduto {
+    margin-top: 10px;
+    align-items: center;
+    width: 300px;
+    border-radius: 10px;
+  }
+  
+  .ingredientes {
+    width: 300px;
+    color: black;
+    text-align: left;
+    font-style: italic;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .containerObservacao {
+    width: "100%";
+    text-align: left;
+  }
+  .observacaoLabel {
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  .inputObservacao {
+    width: 300px;
+    height: 50px;
+    resize: none;
+    padding: 2px;
+  }
+  
+  .containerQuantidade {
+    width: 300px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .divInputQuantidade {
+    width: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .botaoQuantidade {
+    width: 40px;
+    font-weight: bold;
+    background: #f2f2f2;
+    border-radius: 4px;
+    padding: 8px 5px 8px 5px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  .inputQuantidade {
+    height: 34px;
+    width: 30px;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  
+  
+  .botaoAdicionar {
+    padding: 10px;
+    background-color: #e50914;
+    color: white;
+    border-width: 0;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  @media (min-width:768px) {
+
+    .corpo {
+      border-color: lightgray;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 15px;
+      padding: 20px;
+    }
+  }

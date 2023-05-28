@@ -1,10 +1,19 @@
 import React from 'react'
 import styles from "./styles.module.css";
 import Api from '../../Api';
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({produto}) => {
+    const navigate = useNavigate();
+
+    const onProductClick = () => {
+        navigate("/product", { state: { produto } });
+     }
+
+
+
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={onProductClick}>
               <div className={styles.imageArea}>
                   <img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${produto.imagem}`} />
               </div>
