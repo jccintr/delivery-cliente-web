@@ -1,11 +1,14 @@
 import React from 'react';
 import styles from "./styles.module.css";
-import { FaTrashAlt } from "react-icons/fa";
+import CartItemCard from '../CartItemCard/CartItemCard';
 
-const CartItens = ({itensPedido}) => {
+const CartItens = ({itensPedido,deleteItemPedido}) => {
+
+  
   return (
-    <div>
-      {itensPedido.map((itemPedido) =><p>{itemPedido.produto.nome}</p>)}
+    <div className={styles.container}>
+      {itensPedido.map((itemPedido) =><CartItemCard itemPedido={itemPedido} deleteItemPedido={deleteItemPedido}/>)}
+      
     </div>
   )
 }

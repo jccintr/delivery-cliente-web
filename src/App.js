@@ -18,6 +18,12 @@ function App() {
     setItensPedido(novosItens);
    }
 
+   const deleteItemPedido = (id) => {
+    const newItensPedido = itensPedido.filter((item)=> item.id !== id);
+    setItensPedido(newItensPedido);
+   
+ }
+
 
   return (
     <div className="App">
@@ -26,7 +32,7 @@ function App() {
          <BrowserRouter>
             <Routes>
                <Route path="/" element={<Content/>} />
-               <Route path="/cart" element={<Cart itensPedido={itensPedido}/>} />
+               <Route path="/cart" element={<Cart itensPedido={itensPedido} deleteItemPedido={deleteItemPedido}/>} />
                <Route path="/checkout" element={<Checkout/>} />
                <Route path="/product" element={<AddProduct itensPedido={itensPedido} addItemPedido={addItemPedido}/>} />
             </Routes>

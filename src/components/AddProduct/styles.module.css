@@ -107,8 +107,6 @@
     vertical-align: middle;
   }
   
-  
-  
   .botaoAdicionar {
     padding: 10px;
     background-color: #e50914;
@@ -117,6 +115,8 @@
     border-radius: 5px;
     font-weight: bold;
   }
+  
+ 
   
   @media (min-width:768px) {
 

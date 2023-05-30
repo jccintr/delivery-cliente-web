@@ -17,9 +17,7 @@ const Content = () => {
 
   const onchangeInput = (event) => {
     setSearch(event.target.value);
-    let novoArray = produtosBackup.filter(
-      (produto) => produto.nome.toUpperCase().includes(event.target.value.toUpperCase()) || produto.descricao.toUpperCase().includes(event.target.value.toUpperCase()) );
-   
+    let novoArray = produtosBackup.filter((produto) => produto.nome.toUpperCase().includes(event.target.value.toUpperCase()) || produto.descricao.toUpperCase().includes(event.target.value.toUpperCase()) );
     setProdutos(novoArray);
   };
 

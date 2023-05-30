@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 330px;
+    border-bottom: 0.5px solid lightgrey;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.leftArea {
+    display: flex;
+}
+
+.quantidadeText {
+    margin-left: 10px;
+}
+
+.nomeProdutoArea {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 10px;
+} 
+
+.itemCarrinhoTotalDelete {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width:100px;
+}
+
+.imagemProduto {
+    width:50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.produtoText {
+    padding:0;
+    margin:0;
+    text-align: left;;
+ }
+
+ .observacaoText {
+   padding: 0;
+   margin: 0;
+   font-size: 12px;
+   font-style: italic;
+   text-align: left;
+   font-weight: normal;
+ }
+
+ .totalItemText {
+   padding-right: 5px;
+ }
+
+ .deleteIcon {
+    color: #dd1f26;
+ }
+
+ 
+
+ 
