@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react'
 import styles from "./styles.module.css";
-import { FaShoppingCart } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import CartItens from '../CartItens/CartItens';

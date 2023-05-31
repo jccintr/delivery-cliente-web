@@ -22,7 +22,7 @@ const Footer = ({itensPedido}) => {
                 <p className={styles.itensCarrinho}>{itensPedido.length > 0 ? itensPedido.length===1 ? '1 item' : itensPedido.length + ' itens' : 'Vazio'}</p>
             </div>
         </div>
-        {itensPedido.length>0 && <div onClick={()=>{}}><p>Finalizar Pedido</p></div>}
+        {itensPedido.length>0 && <div onClick={()=>navigate('/checkout')}><p>Finalizar Pedido</p></div>}
         {itensPedido.length>0 && <div className={styles.right}><p>R$ {totalPedido.toLocaleString(undefined, { minimumFractionDigits: 2 })}</p></div>}
     </footer>
   );
