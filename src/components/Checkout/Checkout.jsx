@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import InputField from '../InputField/InputField';
 import DataContext from '../../context/DataContext';
 import SelectField from '../SelectField/SelectField';
+import SelectPagamento from '../SelectPagamento/SelectPagamento';
 
 const Checkout = ({itensPedido}) => {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Checkout = ({itensPedido}) => {
     const [totalProdutos,setTotalProdutos] = useState(0);
     const [taxaEntrega,setTaxaEntrega] = useState(0);
     const [totalPedido,setTotalPedido] = useState(0);
+    const [observacao,setObservacao] = useState('');
     const [formaPagamento,setFormaPagamento] = useState('Dinheiro');
     
 
@@ -31,6 +33,20 @@ const Checkout = ({itensPedido}) => {
         });
         setTaxaEntrega(valor);
     }  
+
+    const onSelectPagamento = (id) => {
+        pagamentos.forEach(pagamento => {
+            if(pagamento.id == id) setFormaPagamento(pagamento.nome);
+        });
+    }  
+
+    const onEnviarPedido = () => {
+        if (entregar && taxaEntrega===0){
+            alert('Selecione o bairro por favor.');
+        } else {
+            alert('Seu pedido foi enviado.');
+        }
+    }
 
     return (
         <main className={styles.container}>
@@ -61,7 +77,9 @@ const Checkout = ({itensPedido}) => {
                 <div style={{display: 'flex',flexDirection:'row',justifyContent:'flex-end',width:300,paddingTop:5,paddingBottom:20}}>
                     <p style={{margin:0,padding:0}}>Total a Pagar: R$ {totalPedido.toLocaleString(undefined, { minimumFractionDigits: 2 })}</p>
                 </div>
-                <button className={styles.botao}  onClick={()=>{navigate('/');}}>ENVIAR O PEDIDO</button>
+                <SelectPagamento pagamentos={pagamentos} label="Forma de Pagamento:" onSelect={onSelectPagamento}/>
+                <InputField label="Observações:" placeholder="Mandar troco para 50 reais..." value={observacao} setValue={setObservacao}/>
+                <button className={styles.botao}  onClick={onEnviarPedido}>ENVIAR O PEDIDO</button>
             </div>
        </main>
       );
@@ -75,9 +93,13 @@ const Checkout = ({itensPedido}) => {
 export default Checkout
 
 /*
-nome
-telefone
-
-endereco
+                          
+nome  (r,e)
+telefone (r,e)
+endereco (e)
+observacao (r,e) 
+idTaxa (e)
+idPagamento (r,e)
+itensPedido [] (r,e)
 
 */
