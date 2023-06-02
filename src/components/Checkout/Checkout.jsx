@@ -6,6 +6,7 @@ import InputField from '../InputField/InputField';
 import DataContext from '../../context/DataContext';
 import SelectField from '../SelectField/SelectField';
 import SelectPagamento from '../SelectPagamento/SelectPagamento';
+import Api from '../../Api';
 
 const Checkout = ({itensPedido}) => {
     const navigate = useNavigate();
@@ -16,18 +17,21 @@ const Checkout = ({itensPedido}) => {
     const [endereco,setEndereco] = useState('');
     const [totalProdutos,setTotalProdutos] = useState(0);
     const [taxaEntrega,setTaxaEntrega] = useState(0);
+    const [taxaId,setTaxaId] = useState(null);
+    const [pagamentoId,setPagamentoId] = useState(null);
     const [totalPedido,setTotalPedido] = useState(0);
     const [observacao,setObservacao] = useState('');
     const [formaPagamento,setFormaPagamento] = useState('Dinheiro');
     
 
     useEffect(() => {
-        setTotalProdutos(itensPedido.reduce( (n,{totalProduto}) => n + totalProduto,0));
+        setTotalProdutos(itensPedido.reduce( (n,{total}) => n + total,0));
         setTotalPedido(totalProdutos+taxaEntrega);
       }, [itensPedido,taxaEntrega,totalProdutos]);
 
     const onSelectTaxa = (id) => {
         let valor = 0;
+        setTaxaId(id);
         taxas.forEach(taxa => {
             if(taxa.id == id) valor = taxa.valor*1;
         });
@@ -35,17 +39,27 @@ const Checkout = ({itensPedido}) => {
     }  
 
     const onSelectPagamento = (id) => {
+        setPagamentoId(id)
         pagamentos.forEach(pagamento => {
             if(pagamento.id == id) setFormaPagamento(pagamento.nome);
         });
     }  
 
-    const onEnviarPedido = () => {
+    const onEnviarPedido = async () => {
+        /*
         if (entregar && taxaEntrega===0){
             alert('Selecione o bairro por favor.');
         } else {
             alert('Seu pedido foi enviado.');
         }
+        */
+       let response = await Api.addPedido(entregar,1,nome,telefone,endereco,taxaId,pagamentoId,observacao,itensPedido);
+       if(response.status===201){
+          const json = await response.json();
+          alert('Pedido enviado com sucesso. Número do pedido: ' + json.pedido);
+       } else {
+         alert('Falha ao enviar o pedido. Status ' + response.status);
+       }
     }
 
     return (
@@ -66,11 +80,11 @@ const Checkout = ({itensPedido}) => {
                 {entregar&&<>
                 <InputField label="Endereço:" placeholder="Informe o endereço para entrega" value={endereco} setValue={setEndereco}/>
                 <SelectField taxas={taxas} label="Bairro:" onSelect={onSelectTaxa}/>
-                <div style={{display: 'flex',flexDirection:'row',justifyContent:'flex-end',width:300,paddingTop:5,paddingBottom:0}}>
-                   <p style={{margin:0,padding:0,fontWeight:'normal'}}>Total dos Produtos: R$ {totalProdutos.toLocaleString(undefined, { minimumFractionDigits: 2 })}</p>
+                <div className={styles.valuesTextArea}>
+                   <p className={styles.valuesText}>Total dos Produtos: R$ {totalProdutos.toLocaleString(undefined, { minimumFractionDigits: 2 })}</p>
                 </div>
-                <div style={{display: 'flex',flexDirection:'row',justifyContent:'flex-end',width:300,paddingTop:5,paddingBottom:0}}>
-                   <p style={{margin:0,padding:0,fontWeight:'normal'}}>Taxa de Entrega: R$ {taxaEntrega.toLocaleString(undefined, { minimumFractionDigits: 2 })}</p>
+                <div className={styles.valuesTextArea}>
+                   <p className={styles.valuesText}>Taxa de Entrega: R$ {taxaEntrega.toLocaleString(undefined, { minimumFractionDigits: 2 })}</p>
                 </div>
                 
                 </>}

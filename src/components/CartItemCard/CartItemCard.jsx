@@ -14,13 +14,8 @@ const CartItemCard = ({itemPedido,deleteItemPedido}) => {
                     {itemPedido.observacao.length>0 && <div ><p className={styles.observacaoText}>{itemPedido.observacao}</p></div>}
                  </div>
             </div>
-            
-           
-
-           
-
             <div className={styles.itemCarrinhoTotalDelete}>
-                <p className={styles.totalItemText}>R$ {itemPedido.totalProduto.toLocaleString(undefined, { minimumFractionDigits: 2 })}</p>
+                <p className={styles.totalItemText}>R$ {itemPedido.total.toLocaleString(undefined, { minimumFractionDigits: 2 })}</p>
                 <p className={styles.deleteIcon}><FaTrashAlt onClick={()=> deleteItemPedido(itemPedido.id) }/></p> 
             </div>
    </div>

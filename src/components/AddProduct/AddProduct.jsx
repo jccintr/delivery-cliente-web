@@ -38,7 +38,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
   const adicionarClick = () => {
     
     const id = itensPedido.length > 0 ? itensPedido.length+1 : 1;
-    const novoItemPedido = { id,quantidade,totalProduto:total,observacao,produto };
+    const novoItemPedido = { id,quantidade,total,observacao,produto };
     addItemPedido(novoItemPedido);
     navigate('/');
     

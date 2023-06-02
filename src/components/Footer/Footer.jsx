@@ -10,7 +10,7 @@ const Footer = ({itensPedido}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTotalPedido(itensPedido.reduce( (n,{totalProduto}) => n + totalProduto,0));
+    setTotalPedido(itensPedido.reduce( (n,{total}) => n + total,0));
   }, [itensPedido]);
 
 
