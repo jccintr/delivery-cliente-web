@@ -8,6 +8,7 @@ import Content from "./components/Content/Content";
 import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
 import AddProduct from "./components/AddProduct/AddProduct";
+import OrderSent from './components/OrderSent/OrderSent';
 
 function App() {
   const [itensPedido, setItensPedido] = useState([]);
@@ -33,8 +34,9 @@ function App() {
             <Routes>
                <Route path="/" element={<Content/>} />
                <Route path="/cart" element={<Cart itensPedido={itensPedido} deleteItemPedido={deleteItemPedido}/>} />
-               <Route path="/checkout" element={<Checkout itensPedido={itensPedido}/>} />
+               <Route path="/checkout" element={<Checkout itensPedido={itensPedido} setItensPedido={setItensPedido}/>} />
                <Route path="/product" element={<AddProduct itensPedido={itensPedido} addItemPedido={addItemPedido}/>} />
+               <Route path="/ordersent" element={<OrderSent/>}/>
             </Routes>
             <Footer itensPedido={itensPedido}/>
          </BrowserRouter>

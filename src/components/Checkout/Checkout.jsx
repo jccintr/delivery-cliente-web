@@ -8,7 +8,7 @@ import SelectField from '../SelectField/SelectField';
 import SelectPagamento from '../SelectPagamento/SelectPagamento';
 import Api from '../../Api';
 
-const Checkout = ({itensPedido}) => {
+const Checkout = ({itensPedido,setItensPedido}) => {
     const navigate = useNavigate();
     const {taxas,pagamentos} = useContext(DataContext);
     const [entregar,setEntregar] = useState(true);
@@ -17,8 +17,8 @@ const Checkout = ({itensPedido}) => {
     const [endereco,setEndereco] = useState('');
     const [totalProdutos,setTotalProdutos] = useState(0);
     const [taxaEntrega,setTaxaEntrega] = useState(0);
-    const [taxaId,setTaxaId] = useState(null);
-    const [pagamentoId,setPagamentoId] = useState(null);
+    const [taxaId,setTaxaId] = useState(0);
+    const [pagamentoId,setPagamentoId] = useState(0);
     const [totalPedido,setTotalPedido] = useState(0);
     const [observacao,setObservacao] = useState('');
     const [formaPagamento,setFormaPagamento] = useState('Dinheiro');
@@ -46,20 +46,37 @@ const Checkout = ({itensPedido}) => {
     }  
 
     const onEnviarPedido = async () => {
+        
+        if (nome.trim().length === 0 || telefone.trim().length === 0){
+            alert('Informe o seu nome e telefone por favor.');
+            return; 
+        }
+        if (entregar){
+            if (endereco.trim().length===0) { alert('Informe o seu endereço por favor'); return;}
+            if (taxaId===0) { alert('Selecione o bairro por favor.'); return;}
+            if (pagamentoId===0) { alert('Selecione a forma de pagamento por favor.'); return;}
+        }
+        
+        // alert('enviado');
         /*
-        if (entregar && taxaEntrega===0){
+        if (entregar && taxaId===null){
             alert('Selecione o bairro por favor.');
+            
         } else {
             alert('Seu pedido foi enviado.');
         }
         */
+        
        let response = await Api.addPedido(entregar,1,nome,telefone,endereco,taxaId,pagamentoId,observacao,itensPedido);
        if(response.status===201){
           const json = await response.json();
-          alert('Pedido enviado com sucesso. Número do pedido: ' + json.pedido);
+          setItensPedido([]);
+          navigate('/ordersent',{state: {pedido: json.pedido}});
+          
        } else {
          alert('Falha ao enviar o pedido. Status ' + response.status);
        }
+       
     }
 
     return (
