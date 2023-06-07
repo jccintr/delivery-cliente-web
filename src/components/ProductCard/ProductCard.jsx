@@ -1,13 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styles from "./styles.module.css";
 import Api from '../../Api';
 import { useNavigate } from "react-router-dom";
+import DataContext from '../../context/DataContext';
 
 const ProductCard = ({produto}) => {
+    const {tenant} = useContext(DataContext);
     const navigate = useNavigate();
 
     const onProductClick = () => {
-        navigate("/product", { state: { produto } });
+        if (tenant.aberto) navigate("/product", { state: { produto } });
      }
 
 

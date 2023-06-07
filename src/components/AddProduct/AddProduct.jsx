@@ -1,9 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import styles from "./styles.module.css";
-//import { FaChevronLeft } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import Api from '../../Api';
+import SelectFieldGenerico from '../SelectFieldGenerico/SelectFieldGenerico';
 
 
 
@@ -15,6 +15,8 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
   const valorUnitario = produto.preco;
   const [total, setTotal] = useState(0);
   const [observacao,setObservacao] = useState('');
+  const [selectFields,setSelectFields] = useState([]);
+  
     
 
   useEffect(() => {
@@ -37,11 +39,29 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
 
   const adicionarClick = () => {
     
-    const id = itensPedido.length > 0 ? itensPedido.length+1 : 1;
-    const novoItemPedido = { id,quantidade,total,observacao,produto };
-    addItemPedido(novoItemPedido);
-    navigate('/');
+    if (produto.obrigatorios.length !== selectFields.length) {
+        alert('Selecione todos os itens obrigatórios por favor.');
+    } else {
+      let obrigatorios = '';
+      for(let i=0;i<selectFields.length;i++){
+         obrigatorios += selectFields[i].name + ' : ' + selectFields[i].value + ';';
+      }
+      const id = itensPedido.length > 0 ? itensPedido.length+1 : 1;
+      const novoItemPedido = { id,quantidade,total,obrigatorios,observacao,produto };
+      addItemPedido(novoItemPedido);
+      navigate('/');
+    }
+  
     
+  }
+
+  const onSelectChange = (e) => {
+
+    const newSelectObject = {name: e.target.name,value: e.target.value};
+    let newSelectArr =  selectFields.filter((item)=> item.name !== newSelectObject.name);
+    let n =  [...newSelectArr, newSelectObject];
+    setSelectFields(n);
+   
   }
 
   return (
@@ -54,6 +74,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
         </div>
         <img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${produto.imagem}`}  />
         <div className={styles.ingredientes}>{produto.descricao}</div>
+        {produto.obrigatorios.map( (obrigatorio,index)=>(<SelectFieldGenerico index={index} label={obrigatorio.nome} data={obrigatorio.opcoes} onSelect={onSelectChange}/>)) }
         <div className={styles.containerObservacao}>
           <p className={styles.observacaoLabel}>Observações:</p>
           <textarea
@@ -62,6 +83,9 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
             onChange={(e)=> setObservacao(e.target.value)}
           ></textarea>
         </div>
+        
+         
+        
         <div className={styles.containerQuantidade}>
           <div className={styles.divInputQuantidade}>
             <button className={styles.botaoQuantidade} onClick={DecreaseQuantity}>-</button>

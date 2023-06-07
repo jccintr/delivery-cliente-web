@@ -1,7 +1,7 @@
 .container {
     background-color:white;
     position:absolute; 
-    top:122px; 
+    top:152px; 
     bottom:50px; 
     left:0px; 
     right:0px;
@@ -90,6 +90,9 @@
     border-radius: 5px;
     font-weight: bold;
     width: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
 

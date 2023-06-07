@@ -7,6 +7,7 @@ import DataContext from '../../context/DataContext';
 import SelectField from '../SelectField/SelectField';
 import SelectPagamento from '../SelectPagamento/SelectPagamento';
 import Api from '../../Api';
+import ReactLoading from 'react-loading';
 
 const Checkout = ({itensPedido,setItensPedido}) => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ const Checkout = ({itensPedido,setItensPedido}) => {
     const [totalPedido,setTotalPedido] = useState(0);
     const [observacao,setObservacao] = useState('');
     const [formaPagamento,setFormaPagamento] = useState('Dinheiro');
+    const [isLoading,setIsLoading] = useState(false);
     
 
     useEffect(() => {
@@ -56,25 +58,16 @@ const Checkout = ({itensPedido,setItensPedido}) => {
             if (taxaId===0) { alert('Selecione o bairro por favor.'); return;}
             if (pagamentoId===0) { alert('Selecione a forma de pagamento por favor.'); return;}
         }
-        
-        // alert('enviado');
-        /*
-        if (entregar && taxaId===null){
-            alert('Selecione o bairro por favor.');
-            
-        } else {
-            alert('Seu pedido foi enviado.');
-        }
-        */
-        
+       setIsLoading(true); 
        let response = await Api.addPedido(entregar,1,nome,telefone,endereco,taxaId,pagamentoId,observacao,itensPedido);
        if(response.status===201){
           const json = await response.json();
           setItensPedido([]);
+          setIsLoading(false);
           navigate('/ordersent',{state: {pedido: json.pedido}});
-          
-       } else {
-         alert('Falha ao enviar o pedido. Status ' + response.status);
+        } else {
+        setIsLoading(false);
+        navigate('/ordererror');
        }
        
     }
@@ -110,7 +103,7 @@ const Checkout = ({itensPedido,setItensPedido}) => {
                 </div>
                 <SelectPagamento pagamentos={pagamentos} label="Forma de Pagamento:" onSelect={onSelectPagamento}/>
                 <InputField label="Observações:" placeholder="Mandar troco para 50 reais..." value={observacao} setValue={setObservacao}/>
-                <button className={styles.botao}  onClick={onEnviarPedido}>ENVIAR O PEDIDO</button>
+                <button className={styles.botao}  onClick={onEnviarPedido}>{isLoading?<ReactLoading type="bars" color="#ffffff" height={30} width={30}/>:'ENVIAR O PEDIDO'}</button>
             </div>
        </main>
       );

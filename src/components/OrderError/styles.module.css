@@ -24,12 +24,12 @@
   }
 
   .icon {
-    color: darkgreen;
+    color: darkred;
   }
 
   .botao {
     padding: 10px;
-    background-color: darkgreen;
+    background-color: darkred;
     color: white;
     border-width: 0;
     border-radius: 5px;

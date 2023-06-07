@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import DataContext from '../../context/DataContext';
 import styles from "./styles.module.css";
 import ProductCard from '../ProductCard/ProductCard';
-//import CategoryList from '../CategoryList/CategoryList';
+
 
 
 
