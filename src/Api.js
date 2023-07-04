@@ -1,10 +1,12 @@
 
 
-const BASE_API = 'http://localhost:8000/api';
+//const BASE_API = 'http://localhost:8000/api';
+const BASE_API = 'http://192.168.0.117:8000/api';
 
 export default {
 
-     base_storage: 'http://localhost:8000/storage',
+     //base_storage: 'http://localhost:8000/storage',
+     base_storage: 'http://192.168.0.117:8000/storage',
 
 
      getTenant: async (id) => {

@@ -46,6 +46,9 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
       for(let i=0;i<selectFields.length;i++){
          obrigatorios += selectFields[i].name + ' : ' + selectFields[i].value + ';';
       }
+      console.log(obrigatorios);
+      obrigatorios = obrigatorios.slice(0,-1);
+      console.log(obrigatorios);
       const id = itensPedido.length > 0 ? itensPedido.length+1 : 1;
       const novoItemPedido = { id,quantidade,total,obrigatorios,observacao,produto };
       addItemPedido(novoItemPedido);
