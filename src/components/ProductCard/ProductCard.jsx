@@ -16,11 +16,11 @@ const ProductCard = ({produto}) => {
 
     return (
         <div className={styles.container} onClick={onProductClick}>
-              <div className={styles.imageArea}>
+              {produto.imagem&&<div className={styles.imageArea}>
                   <img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${produto.imagem}`} />
-              </div>
+              </div>}
               <div className={styles.coluna}>
-                  <div className={styles.produtoNome}>{produto.nome}</div>
+                  <p className={styles.produtoNome}>{produto.nome}</p>
                   <div className={styles.produtoIngredientes}>{produto.descricao}</div>
                   <div className={styles.linhaPreco}>
                       <div className={styles.preco}>R$ {produto.preco}</div>

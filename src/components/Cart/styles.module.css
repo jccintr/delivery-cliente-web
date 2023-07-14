@@ -9,9 +9,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-   
-  
-  
 }
 
 
@@ -79,7 +76,7 @@
       border-width: 1px;
       border-style: solid;
       border-radius: 15px;
-      padding: 20px;
+      padding: 10px;
       margin-bottom: 20px;
       margin-top: 20px;
      

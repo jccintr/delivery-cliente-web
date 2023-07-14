@@ -46,9 +46,9 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
       for(let i=0;i<selectFields.length;i++){
          obrigatorios += selectFields[i].name + ' : ' + selectFields[i].value + ';';
       }
-      console.log(obrigatorios);
+      //console.log(obrigatorios);
       obrigatorios = obrigatorios.slice(0,-1);
-      console.log(obrigatorios);
+      //console.log(obrigatorios);
       const id = itensPedido.length > 0 ? itensPedido.length+1 : 1;
       const novoItemPedido = { id,quantidade,total,obrigatorios,observacao,produto };
       addItemPedido(novoItemPedido);
@@ -69,40 +69,39 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
 
   return (
     <main className={styles.container}>
-      
-      <div className={styles.corpo}>
-      <MdClose onClick={()=>{navigate('/');}} style={{position:'absolute',top:10,right:10}} size={22} />
-        <div className={styles.linhaNome}>
-            <div className={styles.nome}>{produto.nome}</div>
-        </div>
-        <img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${produto.imagem}`}  />
-        <div className={styles.ingredientes}>{produto.descricao}</div>
-        {produto.obrigatorios.map( (obrigatorio,index)=>(<SelectFieldGenerico index={index} label={obrigatorio.nome} data={obrigatorio.opcoes} onSelect={onSelectChange}/>)) }
-        <div className={styles.containerObservacao}>
-          <p className={styles.observacaoLabel}>Observações:</p>
-          <textarea
-            className={styles.inputObservacao}
-            placeholder="viajar na maionese..."
-            onChange={(e)=> setObservacao(e.target.value)}
-          ></textarea>
-        </div>
-        
-         
-        
-        <div className={styles.containerQuantidade}>
-          <div className={styles.divInputQuantidade}>
-            <button className={styles.botaoQuantidade} onClick={DecreaseQuantity}>-</button>
-            <input disabled className={styles.inputQuantidade} type="text" value={quantidade} />
-            <button className={styles.botaoQuantidade} onClick={IncreaseQuantity}>+</button>
+        <MdClose onClick={()=>{navigate('/');}} style={{position:'absolute',top:10,right:10}} size={22} />
+        <div className={styles.body}>
+          <div className={styles.linhaNome}>
+              <div className={styles.nome}>{produto.nome}</div>
           </div>
-          <div className={styles.containerBotaoAdicionar}>
-            <button className={styles.botaoAdicionar} onClick={()=>{adicionarClick()}}>
-              Adicionar R${" "}
-              {total.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-            </button>
+          {produto.imagem&&<img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${produto.imagem}`}  />}
+          <div className={styles.ingredientes}>{produto.descricao}</div>
+          {produto.obrigatorios.map( (obrigatorio,index)=>(<SelectFieldGenerico index={index} label={obrigatorio.nome} data={obrigatorio.opcoes} onSelect={onSelectChange}/>)) }
+          <div className={styles.containerObservacao}>
+            <p className={styles.observacaoLabel}>Observações:</p>
+            <textarea
+              className={styles.inputObservacao}
+              placeholder="viajar na maionese..."
+              onChange={(e)=> setObservacao(e.target.value)}
+            ></textarea>
+          </div>
+          
+          
+          
+          <div className={styles.containerQuantidade}>
+            <div className={styles.divInputQuantidade}>
+              <button className={styles.botaoQuantidade} onClick={DecreaseQuantity}>-</button>
+              <input disabled className={styles.inputQuantidade} type="text" value={quantidade} />
+              <button className={styles.botaoQuantidade} onClick={IncreaseQuantity}>+</button>
+            </div>
+            <div className={styles.containerBotaoAdicionar}>
+              <button className={styles.botaoAdicionar} onClick={()=>{adicionarClick()}}>
+                Adicionar R${" "}
+                {total.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
     </main>
   );
 

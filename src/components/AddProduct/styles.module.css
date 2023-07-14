@@ -8,18 +8,24 @@
   overflow:auto;
   display: flex;
   justify-content: center;
-  align-items: center;
-  
-
+  align-items: flex-start;
 }
+.body {
+  
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
 .corpo {
     width: 360px;
-   
     padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-   }
+ }
   
   .linhaNome {
     display: flex;
@@ -120,11 +126,13 @@
   
   @media (min-width:768px) {
 
-    .corpo {
+    .body {
       border-color: lightgray;
       border-width: 1px;
       border-style: solid;
       border-radius: 15px;
       padding: 20px;
+      margin-bottom: 20px;
+      margin-top: 20px;
     }
   }

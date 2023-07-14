@@ -10,6 +10,8 @@ export const DataProvider = ({children}) => {
     const [taxas, setTaxas] = useState([]);
     const [pagamentos, setPagamentos] = useState([]);
     const [tenant,setTenant] = useState({});
+    const [corFundo,setCorFundo] = useState('');
+    const [corTexto,setCorTexto] = useState('');
     
 
 
@@ -21,6 +23,8 @@ export const DataProvider = ({children}) => {
         setCategorias(tenantData.categorias);
         setTaxas(tenantData.taxas);
         setPagamentos(tenantData.pagamentos);
+        setCorFundo(tenantData.cor_fundo);
+        setCorTexto(tenantData.cor_texto);
     }
 
     useEffect(() => {
@@ -37,7 +41,9 @@ export const DataProvider = ({children}) => {
         categorias,
         taxas,
         pagamentos,
-        tenant
+        tenant,
+        corFundo,
+        corTexto
         //getProdutosError,
         //getCategoriasError,
         //getTaxasError,

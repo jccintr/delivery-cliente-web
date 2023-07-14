@@ -4,10 +4,11 @@ import { FaTrashAlt } from "react-icons/fa";
 import Api from '../../Api';
 
 const CartItemCard = ({itemPedido,deleteItemPedido}) => {
+  console.log(itemPedido.produto.imagem);
   return (
     <div className={styles.container} key={itemPedido.id}>
             <div className={styles.leftArea}>
-                <img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${itemPedido.produto.imagem}`}  />
+                {itemPedido.produto.imagem&&<img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${itemPedido.produto.imagem}`}/>}
                 <p className={styles.quantidadeText}>{itemPedido.quantidade} x</p> 
                 <div className={styles.nomeProdutoArea}>
                     <p className={styles.produtoText}>{itemPedido.produto.nome}</p>

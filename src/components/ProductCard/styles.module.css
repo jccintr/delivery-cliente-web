@@ -3,7 +3,6 @@
     width: 100%;
     border-bottom: 0.5px solid lightgrey;
     align-items: center;
-    height: 115px;
   }
   
   .imageArea {
@@ -25,6 +24,8 @@
     flex-direction: column;
     margin-right: 10px;
     flex: 1;
+    margin-left: 10px;
+    
   }
   
   .produtoNome {
@@ -56,10 +57,10 @@
   
   @media (min-width:768px) {
     .container {
-     
      border: 0.5px solid lightgrey;
      border-radius: 10px;
      min-height: 100px;
+     
     }
     .container:hover {
       background-color:whitesmoke;

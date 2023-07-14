@@ -7,9 +7,9 @@ import Status from '../Status/Status';
 const Header = () => {
   const {tenant} = useContext(DataContext);
   return (
-    <header className={styles.container}>
+    <header className={styles.container} style={{backgroundColor: tenant.cor_fundo}}>
         <img className={styles.logo} alt="logo" src={`${Api.base_storage}/${tenant.logotipo}`} />
-        <span>{tenant.name}</span>
+        <span style={{color: tenant.cor_texto}}>{tenant.name}</span>
         <Status aberto={tenant.aberto}/>
         
     </header>
