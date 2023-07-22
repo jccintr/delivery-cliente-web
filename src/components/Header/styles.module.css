@@ -8,12 +8,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-   
     justify-content: space-evenly;
     font-weight: 600;
     border-bottom: 2px solid #441e1f;
-    
-}
+ }
 
 .logo {
     width: 80px;
@@ -21,12 +19,33 @@
     border-radius: 10px;
     border: 1px solid black;
 }
-.status {
-
+.infoLine {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .infoArea {
     width: 80%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.containerInfo {
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 20px;
+    border-width: 1px;
+    border-style: solid;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.infoText {
+       font-size: 12px;
 }

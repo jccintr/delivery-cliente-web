@@ -16,7 +16,7 @@ export const DataProvider = ({children}) => {
 
 
     const getData = async () => {
-        let tenantData = await Api.getTenant(1);
+        let tenantData = await Api.getTenant(3);
         setTenant(tenantData);
         setProdutos(tenantData.produtos);
         setProdutosBackup(tenantData.produtos);

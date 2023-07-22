@@ -4,6 +4,7 @@ import { MdClose } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import Api from '../../Api';
 import SelectFieldGenerico from '../SelectFieldGenerico/SelectFieldGenerico';
+import AdicionalCard from '../AdicionalCard/AdicionalCard';
 
 
 
@@ -16,8 +17,11 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
   const [total, setTotal] = useState(0);
   const [observacao,setObservacao] = useState('');
   const [selectFields,setSelectFields] = useState([]);
+  const [adicionais,setAdicionais] = useState([]);
   
-    
+  useEffect(() => {
+    criaArrayAdicionais();
+  }, []);
 
   useEffect(() => {
     CalculaTotal();
@@ -46,9 +50,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
       for(let i=0;i<selectFields.length;i++){
          obrigatorios += selectFields[i].name + ' : ' + selectFields[i].value + ';';
       }
-      //console.log(obrigatorios);
       obrigatorios = obrigatorios.slice(0,-1);
-      //console.log(obrigatorios);
       const id = itensPedido.length > 0 ? itensPedido.length+1 : 1;
       const novoItemPedido = { id,quantidade,total,obrigatorios,observacao,produto };
       addItemPedido(novoItemPedido);
@@ -67,6 +69,34 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
    
   }
 
+
+  const onAdicionalChange = (e) => {
+
+   // alert(e.target.value)    
+    let n = adicionais;
+    
+    for (let i=0;i<n.length;i++){
+        if(n[i].id==e.target.value){
+          
+           n[i].selecionado = !n[i].selecionado;
+           
+        }
+    }
+    console.log(n);
+    setAdicionais(n);
+  }
+
+  const criaArrayAdicionais = () => {
+       let n = [];
+      
+       for (let i=0;i<produto.adicionais.length;i++){
+         const newAdicional = {id:i,nome: produto.adicionais[i].nome,valor: produto.adicionais[i].valor,selecionado: false}
+         n.push(newAdicional);
+       }
+
+       setAdicionais(n);
+  }
+
   return (
     <main className={styles.container}>
         <MdClose onClick={()=>{navigate('/');}} style={{position:'absolute',top:10,right:10}} size={22} />
@@ -77,6 +107,10 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
           {produto.imagem&&<img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${produto.imagem}`}  />}
           <div className={styles.ingredientes}>{produto.descricao}</div>
           {produto.obrigatorios.map( (obrigatorio,index)=>(<SelectFieldGenerico index={index} label={obrigatorio.nome} data={obrigatorio.opcoes} onSelect={onSelectChange}/>)) }
+          {produto.adicionais.length>0&&<div className={styles.containerObservacao}>
+            <p className={styles.observacaoLabel}>Adicione ingredientes:</p>
+          </div>}
+          {adicionais.map((adicional,index)=><AdicionalCard onChange={onAdicionalChange} key={index} adicional={adicional}/>)}
           <div className={styles.containerObservacao}>
             <p className={styles.observacaoLabel}>Observações:</p>
             <textarea
@@ -85,6 +119,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
               onChange={(e)=> setObservacao(e.target.value)}
             ></textarea>
           </div>
+          
           
           
           
