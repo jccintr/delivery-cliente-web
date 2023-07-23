@@ -14,6 +14,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
   const {produto} = params.state;
   const [quantidade, setQuantidade] = useState(1);
   const valorUnitario = produto.preco;
+  const [totalAdicional,setTotalAdicional] = useState(0);
   const [total, setTotal] = useState(0);
   const [observacao,setObservacao] = useState('');
   const [selectFields,setSelectFields] = useState([]);
@@ -25,7 +26,11 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
 
   useEffect(() => {
     CalculaTotal();
-  }, [quantidade]);
+  }, [quantidade,totalAdicional]);
+
+  useEffect(() => {
+    CalculaTotalAdicionais();
+  }, [adicionais]);
 
   const IncreaseQuantity = () => {
     setQuantidade(quantidade + 1);
@@ -37,8 +42,17 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
     }
   };
   const CalculaTotal = () => {
-    let total = quantidade * valorUnitario;
+    let total = quantidade * (parseFloat(valorUnitario) + parseFloat(totalAdicional));
     setTotal(total);
+  };
+  const CalculaTotalAdicionais = () => {
+     let total = 0;
+     for (let i=0;i<adicionais.length;i++){
+        if(adicionais[i].selecionado){
+          total = total + parseFloat(adicionais[i].valor);
+        }
+     }
+     setTotalAdicional(total);
   };
 
   const adicionarClick = () => {
@@ -46,13 +60,23 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
     if (produto.obrigatorios.length !== selectFields.length) {
         alert('Selecione todos os itens obrigatórios por favor.');
     } else {
+
       let obrigatorios = '';
       for(let i=0;i<selectFields.length;i++){
          obrigatorios += selectFields[i].name + ' : ' + selectFields[i].value + ';';
       }
       obrigatorios = obrigatorios.slice(0,-1);
+
+      let strAdicionais = '';
+      for(let i=0;i<adicionais.length;i++){
+         if(adicionais[i].selecionado){
+            strAdicionais += adicionais[i].nome + ' : ' + adicionais[i].valor + ';';
+         }
+      }
+      strAdicionais = strAdicionais.slice(0,-1);
+
       const id = itensPedido.length > 0 ? itensPedido.length+1 : 1;
-      const novoItemPedido = { id,quantidade,total,obrigatorios,observacao,produto };
+      const novoItemPedido = { id,quantidade,total,obrigatorios,adicionais: strAdicionais,observacao,produto };
       addItemPedido(novoItemPedido);
       navigate('/');
     }
@@ -71,19 +95,18 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
 
 
   const onAdicionalChange = (e) => {
-
-   // alert(e.target.value)    
+   
     let n = adicionais;
     
     for (let i=0;i<n.length;i++){
         if(n[i].id==e.target.value){
-          
            n[i].selecionado = !n[i].selecionado;
-           
         }
     }
-    console.log(n);
+    
     setAdicionais(n);
+    CalculaTotalAdicionais();
+    CalculaTotal();
   }
 
   const criaArrayAdicionais = () => {
