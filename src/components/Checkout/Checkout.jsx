@@ -11,7 +11,7 @@ import ReactLoading from 'react-loading';
 
 const Checkout = ({itensPedido,setItensPedido}) => {
     const navigate = useNavigate();
-    const {taxas,pagamentos} = useContext(DataContext);
+    const {tenant,taxas,pagamentos} = useContext(DataContext);
     const [entregar,setEntregar] = useState(true);
     const [nome,setNome] = useState('');
     const [telefone,setTelefone] = useState('');
@@ -59,7 +59,7 @@ const Checkout = ({itensPedido,setItensPedido}) => {
             if (pagamentoId===0) { alert('Selecione a forma de pagamento por favor.'); return;}
         }
        setIsLoading(true); 
-       let response = await Api.addPedido(entregar,1,nome,telefone,endereco,taxaId,pagamentoId,observacao,itensPedido);
+       let response = await Api.addPedido(entregar,tenant.id,nome,telefone,endereco,taxaId,pagamentoId,observacao,itensPedido);
        if(response.status===201){
           const json = await response.json();
           setItensPedido([]);
