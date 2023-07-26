@@ -11,7 +11,7 @@ import ReactLoading from 'react-loading';
 
 const Checkout = ({itensPedido,setItensPedido}) => {
     const navigate = useNavigate();
-    const {tenant,taxas,pagamentos} = useContext(DataContext);
+    const {tenant,taxas,pagamentos,slug} = useContext(DataContext);
     const [entregar,setEntregar] = useState(true);
     const [nome,setNome] = useState('');
     const [telefone,setTelefone] = useState('');
@@ -74,7 +74,7 @@ const Checkout = ({itensPedido,setItensPedido}) => {
 
     return (
         <main className={styles.container}>
-            <MdClose onClick={()=>{navigate('/');}} style={{position:'absolute',top:10,right:10}} size={22} />
+            <MdClose onClick={()=>{navigate(`/${slug}`);}} style={{position:'absolute',top:10,right:10}} size={22} />
             
             <div className={styles.body}>
             

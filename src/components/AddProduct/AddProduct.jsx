@@ -1,14 +1,16 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect,useContext} from 'react';
 import styles from "./styles.module.css";
 import { MdClose } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import Api from '../../Api';
 import SelectFieldGenerico from '../SelectFieldGenerico/SelectFieldGenerico';
 import AdicionalCard from '../AdicionalCard/AdicionalCard';
+import DataContext from '../../context/DataContext';
 
 
 
 const AddProduct = ({itensPedido,addItemPedido}) => {
+  const {slug} = useContext(DataContext);
   const navigate = useNavigate();
   const params = useLocation();
   const {produto} = params.state;
@@ -78,7 +80,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
       const id = itensPedido.length > 0 ? itensPedido.length+1 : 1;
       const novoItemPedido = { id,quantidade,total,obrigatorios,adicionais: strAdicionais,observacao,produto };
       addItemPedido(novoItemPedido);
-      navigate('/');
+      navigate(`/${slug}`);
     }
   
     
@@ -122,7 +124,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
 
   return (
     <main className={styles.container}>
-        <MdClose onClick={()=>{navigate('/');}} style={{position:'absolute',top:10,right:10}} size={22} />
+        <MdClose onClick={()=>{navigate(`/${slug}`);}} style={{position:'absolute',top:10,right:10}} size={22} />
         <div className={styles.body}>
           <div className={styles.linhaNome}>
               <div className={styles.nome}>{produto.nome}</div>

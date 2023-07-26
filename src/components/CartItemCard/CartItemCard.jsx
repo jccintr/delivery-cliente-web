@@ -9,7 +9,7 @@ const CartItemCard = ({itemPedido,deleteItemPedido}) => {
     <div className={styles.container} key={itemPedido.id}>
             <div className={styles.leftArea}>
                 {itemPedido.produto.imagem&&<img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${itemPedido.produto.imagem}`}/>}
-                <p className={styles.quantidadeText}>{itemPedido.quantidade} x</p> 
+                <p className={styles.quantidadeText}>{itemPedido.quantidade}</p> 
                 <div className={styles.nomeProdutoArea}>
                     <p className={styles.produtoText}>{itemPedido.produto.nome}</p>
                     {itemPedido.observacao.length>0 && <div ><p className={styles.observacaoText}>{itemPedido.observacao}</p></div>}

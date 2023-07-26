@@ -12,24 +12,26 @@ export const DataProvider = ({children}) => {
     const [tenant,setTenant] = useState({});
     const [corFundo,setCorFundo] = useState('');
     const [corTexto,setCorTexto] = useState('');
-    
+    const [slug,setSlug] = useState('');
 
 
     const getData = async () => {
-        let tenantData = await Api.getTenant(3);
-        setTenant(tenantData);
-        setProdutos(tenantData.produtos);
-        setProdutosBackup(tenantData.produtos);
-        setCategorias(tenantData.categorias);
-        setTaxas(tenantData.taxas);
-        setPagamentos(tenantData.pagamentos);
-        setCorFundo(tenantData.cor_fundo);
-        setCorTexto(tenantData.cor_texto);
+        if (slug.length>0){
+          let tenantData = await Api.getTenant(slug);
+          setTenant(tenantData);
+          setProdutos(tenantData.produtos);
+          setProdutosBackup(tenantData.produtos);
+          setCategorias(tenantData.categorias);
+          setTaxas(tenantData.taxas);
+          setPagamentos(tenantData.pagamentos);
+          setCorFundo(tenantData.cor_fundo);
+          setCorTexto(tenantData.cor_texto);
+        }
     }
 
     useEffect(() => {
         getData();
-      }, []);
+      }, [slug]);
 
 
   return (
@@ -43,7 +45,9 @@ export const DataProvider = ({children}) => {
         pagamentos,
         tenant,
         corFundo,
-        corTexto
+        corTexto,
+        slug,
+        setSlug
         //getProdutosError,
         //getCategoriasError,
         //getTaxasError,

@@ -33,7 +33,7 @@ function App() {
          <Header />
          <BrowserRouter>
             <Routes>
-               <Route path="/" element={<Content/>} />
+               <Route path="/:x" element={<Content/>} />
                <Route path="/cart" element={<Cart itensPedido={itensPedido} deleteItemPedido={deleteItemPedido}/>} />
                <Route path="/checkout" element={<Checkout itensPedido={itensPedido} setItensPedido={setItensPedido}/>} />
                <Route path="/product" element={<AddProduct itensPedido={itensPedido} addItemPedido={addItemPedido}/>} />

@@ -1,13 +1,22 @@
-import React, {useContext,useState} from 'react'
+import React, {useContext,useState,useEffect} from 'react'
 import styles from "./styles.module.css";
 import ProductList from '../ProductList/ProductList';
 import CategoryList from '../CategoryList/CategoryList';
 import DataContext from '../../context/DataContext';
 import SearchField from '../SearchField/SearchField';
+import { useParams } from "react-router-dom";
 
 const Content = () => {
-  const {produtos,categorias,produtosBackup,setProdutos} = useContext(DataContext);
+  const {x} = useParams();
+  const {produtos,categorias,produtosBackup,setProdutos,setSlug} = useContext(DataContext);
   const [search, setSearch] = useState('');
+
+
+  useEffect(() => {
+    setSlug(x);
+  }, []);
+
+
 
   const onClearClick = () => {
     setSearch('');
