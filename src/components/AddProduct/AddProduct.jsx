@@ -96,12 +96,12 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
   }
 
 
-  const onAdicionalChange = (e) => {
+  const onAdicionalChange = (id) => {
    
     let n = adicionais;
     
     for (let i=0;i<n.length;i++){
-        if(n[i].id==e.target.value){
+        if(n[i].id==id){
            n[i].selecionado = !n[i].selecionado;
         }
     }
@@ -131,11 +131,15 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
           </div>
           {produto.imagem&&<img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${produto.imagem}`}  />}
           <div className={styles.ingredientes}>{produto.descricao}</div>
+          
           {produto.obrigatorios.map( (obrigatorio,index)=>(<SelectFieldGenerico index={index} label={obrigatorio.nome} data={obrigatorio.opcoes} onSelect={onSelectChange}/>)) }
+          
           {produto.adicionais.length>0&&<div className={styles.containerObservacao}>
             <p className={styles.observacaoLabel}>Adicione ingredientes:</p>
           </div>}
           {adicionais.map((adicional,index)=><AdicionalCard onChange={onAdicionalChange} key={index} adicional={adicional}/>)}
+          
+          
           <div className={styles.containerObservacao}>
             <p className={styles.observacaoLabel}>Observações:</p>
             <textarea

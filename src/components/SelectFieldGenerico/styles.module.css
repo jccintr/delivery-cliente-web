@@ -19,16 +19,17 @@
 .selectContainer {
     border: 0.5px solid lightgray;
     padding: 5px;
-    width: 300px;
+    width: 330px;
     
 }
 
 
 .select {
-    width: 300px;   
+    width: 330px;   
     border: none;
     outline: none;
     background-color: white; 
     height: 30px;
+    color: black;
     
 }

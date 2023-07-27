@@ -29,14 +29,13 @@ const Telefone = () => {
 
   return (
     <header className={styles.container} style={{backgroundColor: tenant.cor_fundo}}>
-        <img className={styles.logo} alt="logo" src={`${Api.base_storage}/${tenant.logotipo}`} />
+        {tenant.logotipo&&<img className={styles.logo} alt="logo" src={`${Api.base_storage}/${tenant.logotipo}`} />}
         <span style={{color: tenant.cor_texto}}>{tenant.name}</span>
         <div className={styles.infoLine}>
           <TempoEspera/>
           <Status aberto={tenant.aberto}/>
           <Telefone/>
         </div>
-        
     </header>
   )
 }

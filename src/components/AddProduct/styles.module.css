@@ -11,7 +11,6 @@
   align-items: flex-start;
 }
 .body {
-  
   padding-top: 20px;
   display: flex;
   flex-direction: column;
@@ -26,39 +25,33 @@
     flex-direction: column;
     align-items: center;
  }
-  
-  .linhaNome {
+.linhaNome {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    
-  }
-  
-  .nome {
+}
+.nome {
     color: black;
     text-align: left;
-    width: 300px;
+    width: 330px;
     font-weight: bold;
     font-size: 18px;
-  }
-  
-  .imagemProduto {
+ }
+.imagemProduto {
     margin-top: 10px;
     align-items: center;
-    width: 300px;
+    width: 200px;
     border-radius: 10px;
   }
-  
   .ingredientes {
-    width: 300px;
+    width: 330px;
     color: black;
     text-align: left;
     font-style: italic;
     font-size: 16px;
     margin-top: 10px;
   }
-  
   .containerObservacao {
     width: 100%;
     text-align: left;
@@ -69,14 +62,14 @@
   }
   
   .inputObservacao {
-    width: 300px;
+    width: 330px;
     height: 50px;
     resize: none;
     padding: 2px;
   }
   
   .containerQuantidade {
-    width: 300px;
+    width: 330px;
     margin-top: 10px;
     display: flex;
     flex-direction: row;
@@ -100,6 +93,7 @@
     display: inline-block;
     vertical-align: middle;
     text-align: center;
+    color: black;
   }
   
   .inputQuantidade {
@@ -135,4 +129,11 @@
       margin-bottom: 20px;
       margin-top: 20px;
     }
+    .imagemProduto {
+      margin-top: 10px;
+      align-items: center;
+      width: 250px;
+      border-radius: 10px;
+    }
+  
   }
