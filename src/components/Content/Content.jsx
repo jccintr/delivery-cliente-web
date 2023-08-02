@@ -7,15 +7,13 @@ import SearchField from '../SearchField/SearchField';
 import { useParams } from "react-router-dom";
 
 const Content = () => {
-  const {x} = useParams();
+  const {slug} = useParams();
   const {produtos,categorias,produtosBackup,setProdutos,setSlug} = useContext(DataContext);
   const [search, setSearch] = useState('');
 
-
   useEffect(() => {
-    setSlug(x);
+    setSlug(slug);
   }, []);
-
 
 
   const onClearClick = () => {

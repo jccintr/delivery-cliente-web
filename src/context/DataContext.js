@@ -13,7 +13,7 @@ export const DataProvider = ({children}) => {
     const [corFundo,setCorFundo] = useState('');
     const [corTexto,setCorTexto] = useState('');
     const [slug,setSlug] = useState('');
-
+    const [loadingPage,setLoadingPage] = useState(true);
 
     const getData = async () => {
         if (slug.length>0){
@@ -26,6 +26,7 @@ export const DataProvider = ({children}) => {
           setPagamentos(tenantData.pagamentos);
           setCorFundo(tenantData.cor_fundo);
           setCorTexto(tenantData.cor_texto);
+          setLoadingPage(false)
         }
     }
 
@@ -47,7 +48,8 @@ export const DataProvider = ({children}) => {
         corFundo,
         corTexto,
         slug,
-        setSlug
+        setSlug,
+        loadingPage
         //getProdutosError,
         //getCategoriasError,
         //getTaxasError,

@@ -7,7 +7,7 @@ const BASE_API = 'https://brazped-api.js-software.tech/api';
 export default {
 
      //base_storage: 'http://localhost:8000/storage',
-     //base_storage: 'http://192.168.0.117:8000/storage',
+ //    base_storage: 'http://192.168.0.117:8000/storage',
      base_storage: 'https://brazped-api.js-software.tech/storage',
 
 
@@ -34,5 +34,10 @@ export default {
         });
       return response;
     },
+    getPedido: async (id) => {
+        const response = await fetch(`${BASE_API}/pedidos/cliente/${id}`);
+        //const json = await req.json();
+        return response;
+    }, 
 
 };

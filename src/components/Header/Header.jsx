@@ -6,7 +6,8 @@ import Status from '../Status/Status';
 import { FaClock,FaPhoneAlt } from "react-icons/fa";
 
 const Header = () => {
-  const {tenant} = useContext(DataContext);
+  const {tenant,loadingPage} = useContext(DataContext);
+  console.log('loading='+loadingPage);
 
   const TempoEspera = () => {
     return (
@@ -28,7 +29,8 @@ const Telefone = () => {
 
 
   return (
-    <header className={styles.container} style={{backgroundColor: tenant.cor_fundo}}>
+    <>
+      {!loadingPage&&<header className={styles.container} style={{backgroundColor: tenant.cor_fundo}}>
         {tenant.logotipo&&<img className={styles.logo} alt="logo" src={`${Api.base_storage}/${tenant.logotipo}`} />}
         <span style={{color: tenant.cor_texto}}>{tenant.name}</span>
         <div className={styles.infoLine}>
@@ -36,7 +38,10 @@ const Telefone = () => {
           <Status aberto={tenant.aberto}/>
           <Telefone/>
         </div>
-    </header>
+    </header>}
+    </>
+    
+    
   )
 }
 

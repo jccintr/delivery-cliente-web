@@ -62,9 +62,11 @@ const Checkout = ({itensPedido,setItensPedido}) => {
        let response = await Api.addPedido(entregar,tenant.id,nome,telefone,endereco,taxaId,pagamentoId,observacao,itensPedido);
        if(response.status===201){
           const json = await response.json();
+          
+          localStorage.setItem('lastOrder', json.id);  
           setItensPedido([]);
           setIsLoading(false);
-          navigate('/ordersent',{state: {pedido: json.pedido}});
+          navigate('/ordersent',{state: {pedido: json}});
         } else {
         setIsLoading(false);
         navigate('/ordererror');

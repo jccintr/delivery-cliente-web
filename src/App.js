@@ -1,4 +1,4 @@
-import React, { useState,} from 'react';
+import React, {useState} from 'react';
 import {BrowserRouter,Routes, Route } from "react-router-dom";
 import { DataProvider } from "./context/DataContext";
 import './App.css';
@@ -10,9 +10,13 @@ import Checkout from "./components/Checkout/Checkout";
 import AddProduct from "./components/AddProduct/AddProduct";
 import OrderSent from './components/OrderSent/OrderSent';
 import OrderError from './components/OrderError/OrderError';
+import LastOrder from './components/LastOrder/LastOrder';
 
-function App() {
-  const [itensPedido, setItensPedido] = useState([]);
+
+const App = () => {
+   
+   const [itensPedido, setItensPedido] = useState([]);
+ 
   
 
   const addItemPedido = (novoItemPedido) => {
@@ -30,20 +34,20 @@ function App() {
   return (
     <div className="App">
       <DataProvider>
-         <Header />
+          <Header/>
          <BrowserRouter>
             <Routes>
-               <Route path="/:x" element={<Content/>} />
+               <Route path="/:slug" element={<Content/>} />
                <Route path="/cart" element={<Cart itensPedido={itensPedido} deleteItemPedido={deleteItemPedido}/>} />
                <Route path="/checkout" element={<Checkout itensPedido={itensPedido} setItensPedido={setItensPedido}/>} />
                <Route path="/product" element={<AddProduct itensPedido={itensPedido} addItemPedido={addItemPedido}/>} />
                <Route path="/ordersent" element={<OrderSent/>}/>
                <Route path="/ordererror" element={<OrderError/>}/>
+               <Route path="/status" element={<LastOrder/>}/>
             </Routes>
             <Footer itensPedido={itensPedido}/>
          </BrowserRouter>
-         
-      </DataProvider>
+        </DataProvider>
         
     </div>
   );
