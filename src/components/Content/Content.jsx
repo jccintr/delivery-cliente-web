@@ -5,10 +5,11 @@ import CategoryList from '../CategoryList/CategoryList';
 import DataContext from '../../context/DataContext';
 import SearchField from '../SearchField/SearchField';
 import { useParams } from "react-router-dom";
+import ReactLoading from 'react-loading';
 
 const Content = () => {
   const {slug} = useParams();
-  const {produtos,categorias,produtosBackup,setProdutos,setSlug} = useContext(DataContext);
+  const {produtos,categorias,produtosBackup,setProdutos,setSlug,loadingPage} = useContext(DataContext);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -30,11 +31,19 @@ const Content = () => {
 
 
   return (
+    <>
+    {!loadingPage?(
     <main className={styles.container}>
         <CategoryList categorias={categorias}/>
         <SearchField onChange={onchangeInput} search={search} onClearClick={onClearClick}/>
         <ProductList produtos={produtos}/>
+    </main>):(<main className={styles.loading}>
+      <ReactLoading  type="spin" color="#000000" height={150} width={150} />
+      <span className={styles.loadingMessage}>Um momento por favor...</span>
     </main>
+      
+    )}
+    </>
   )
 }
 

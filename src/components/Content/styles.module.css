@@ -10,3 +10,18 @@
     padding-right: 10px;
  
  }
+
+ .loading {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ }
+
+ .loadingMessage {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+ }
