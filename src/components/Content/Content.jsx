@@ -38,7 +38,7 @@ const Content = () => {
         <SearchField onChange={onchangeInput} search={search} onClearClick={onClearClick}/>
         <ProductList produtos={produtos}/>
     </main>):(<main className={styles.loading}>
-      <ReactLoading  type="spin" color="#000000" height={150} width={150} />
+      <ReactLoading  type="spin" color="#C0C0C0" height={150} width={150} />
       <span className={styles.loadingMessage}>Um momento por favor...</span>
     </main>
       
