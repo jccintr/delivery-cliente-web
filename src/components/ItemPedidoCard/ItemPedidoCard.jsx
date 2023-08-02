@@ -6,8 +6,8 @@ const ItemPedidoCard = ({item,last}) => {
     return (
         <div className={styles.container} >
             <div className={styles.itemContainer}>
-               <span>{item.quantidade}  {item.produto.nome}</span> 
-               <span style={{fontWeight:'bold'}}>R$ {item.total}</span> 
+               <span style={{fontSize:14}}>{item.quantidade}  {item.produto.nome}</span> 
+               <span style={{fontWeight:'bold',fontSize:14}}>R$ {item.total}</span> 
             </div>
             {item.obrigatorios.map((item,index)=><span className={styles.detalhesText} key={index}>{item}</span>)}
             {item.adicionais.map((item,index)=><span className={styles.detalhesText} key={index}>   + {item}</span>)}

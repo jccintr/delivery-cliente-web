@@ -37,6 +37,12 @@
     align-items: center;
     justify-content: flex-start;
     width: 330px;
+    background-color:#f1f1f1;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
    
   }
 

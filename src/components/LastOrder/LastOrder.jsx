@@ -36,6 +36,9 @@ const LastOrder = () => {
   const navigate = useNavigate();
   const {slug} = useContext(DataContext);
   const [pedido,setPedido] = useState({});
+  const [totalProdutos,setTotalProdutos] = useState(0);
+  const [taxaEntrega,setTaxaEntrega] = useState(0);
+  
   const [itensPedido,setItensPedido] = useState([]);
   const [statusLog,setStatusLog] = useState([]);
   const [isLoading,setIsLoading] = useState(false);
@@ -66,6 +69,9 @@ useEffect(() => {
       if(response.status===200) {
         let json = await response.json();
         setPedido(json);
+        setTotalProdutos(json.total);
+        setTaxaEntrega(json.taxa_entrega);
+       
         setItensPedido(json.itens_pedido);
         setStatusLog(json.status_pedido_log);
       }
@@ -83,6 +89,8 @@ const onRefresh = async () => {
   if(response.status===200) {
     let json = await response.json();
     setPedido(json);
+    setTotalProdutos(json.total);
+    setTaxaEntrega(json.taxa_entrega);
     setItensPedido(json.itens_pedido);
     setStatusLog(json.status_pedido_log);
   }
@@ -122,29 +130,29 @@ const onRefresh = async () => {
               <div className={styles.itensArea}>
                    <div className={styles.numeroPedido}>Totais do Pedido</div>
                    <div className={styles.totalLine}>
-                      <span>Total dos Produtos:</span>
-                      <span>R$ {pedido.total}</span>
+                      <span style={{fontSize:14}}>Total dos Produtos:</span>
+                      <span style={{fontSize:14}}>R$ {totalProdutos.toFixed(2)}</span>
                    </div>
                    {pedido.delivery&&<div className={styles.totalLine}>
-                      <span>Taxa de Entrega:</span>
-                      <span>R$ {pedido.taxa_entrega}</span>
+                      <span style={{fontSize:14}}>Taxa de Entrega:</span>
+                      <span style={{fontSize:14}}>R$ {taxaEntrega}</span>
                    </div>}
                    <div className={styles.totalLine}>
-                      <span style={{fontWeight:'bold'}}>Total do Pedido:</span>
-                      <span style={{fontWeight:'bold'}}>R$ {(parseFloat(pedido.taxa_entrega) + parseFloat(pedido.total))}</span>
+                      <span style={{fontWeight:'bold',fontSize:14}}>Total do Pedido:</span>
+                      <span style={{fontWeight:'bold',fontSize:14}}>R$ {(totalProdutos*1+taxaEntrega*1)}</span>
                    </div>
               </div>
               <div className={styles.itensArea}>
                   <div className={styles.numeroPedido}>Forma de Pagamento</div>
-                  <span style={{width:'100%',textAlign:'left'}}>{pedido.forma_pagamento}</span>
+                  <span style={{width:'100%',textAlign:'left',fontSize:14}}>{pedido.forma_pagamento}</span>
               </div>
               {pedido.delivery&&<div className={styles.itensArea}>
                   <div className={styles.numeroPedido}>Endereço para Entrega</div>
-                  <span style={{width:'100%',textAlign:'left'}}>{pedido.endereco} - {pedido.bairro}</span>
+                  <span style={{width:'100%',textAlign:'left',fontSize:14}}>{pedido.endereco} - {pedido.bairro}</span>
               </div>}
               {pedido.observacao&&<div className={styles.itensArea}>
                   <div className={styles.numeroPedido}>Observações</div>
-                  <span style={{width:'100%',textAlign:'left'}}>{pedido.observacao}</span>
+                  <span style={{width:'100%',textAlign:'left',fontSize:14}}>{pedido.observacao}</span>
               </div>}
               <div className={styles.itensArea}>
                   <div className={styles.numeroPedido}>Status do Pedido</div>
