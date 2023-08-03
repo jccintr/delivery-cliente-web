@@ -15,6 +15,7 @@
 
 .quantidadeText {
     margin-left: 10px;
+    font-size: 14px;
 }
 
 .nomeProdutoArea {
@@ -44,6 +45,7 @@
     margin:0;
     text-align: left;
     font-weight:normal;
+    font-size: 14px;
  }
 
  .observacaoText {
@@ -57,10 +59,16 @@
 
  .totalItemText {
    padding-right: 5px;
+   font-size: 14px;
  }
 
  .deleteIcon {
     color: #dd1f26;
+ }
+
+ .detalhesText {
+    font-size: 12px;
+    margin-left: 5px;
  }
 
  

@@ -4,7 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import Api from '../../Api';
 
 const CartItemCard = ({itemPedido,deleteItemPedido}) => {
-  console.log(itemPedido.produto.imagem);
+  //console.log(JSON.stringify(itemPedido));
   return (
     <div className={styles.container} key={itemPedido.id}>
             <div className={styles.leftArea}>
@@ -12,7 +12,9 @@ const CartItemCard = ({itemPedido,deleteItemPedido}) => {
                 <p className={styles.quantidadeText}>{itemPedido.quantidade}</p> 
                 <div className={styles.nomeProdutoArea}>
                     <p className={styles.produtoText}>{itemPedido.produto.nome}</p>
-                    {itemPedido.observacao.length>0 && <div ><p className={styles.observacaoText}>{itemPedido.observacao}</p></div>}
+                    {itemPedido.obrigatorios.split(';').map((item,index)=><span className={styles.detalhesText} key={index}>{item}</span>)}
+                    {itemPedido.adicionais.length>0?itemPedido.adicionais.split(';').map((item,index)=><span className={styles.detalhesText} key={index}>+ {item}</span>):''}
+                    {itemPedido.observacao.length>0 && <div ><p className={styles.observacaoText}>Obs.: {itemPedido.observacao}</p></div>}
                  </div>
             </div>
             <div className={styles.itemCarrinhoTotalDelete}>
