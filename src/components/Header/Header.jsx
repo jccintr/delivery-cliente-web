@@ -5,8 +5,10 @@ import Api from '../../Api';
 import Status from '../Status/Status';
 import { FaClock,FaPhoneAlt } from "react-icons/fa";
 
+
 const Header = () => {
   const {tenant,loadingPage} = useContext(DataContext);
+  
   //console.log('loading='+loadingPage);
 
   const TempoEspera = () => {

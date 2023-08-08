@@ -9,6 +9,7 @@ export const DataProvider = ({children}) => {
     const [categorias, setCategorias] = useState([]);
     const [taxas, setTaxas] = useState([]);
     const [pagamentos, setPagamentos] = useState([]);
+    const [horarios, setHorarios] = useState([]);
     const [tenant,setTenant] = useState({});
     const [corFundo,setCorFundo] = useState('');
     const [corTexto,setCorTexto] = useState('');
@@ -23,6 +24,7 @@ export const DataProvider = ({children}) => {
           setProdutosBackup(tenantData.produtos);
           setCategorias(tenantData.categorias);
           setTaxas(tenantData.taxas);
+          setHorarios(tenantData.horarios);
           setPagamentos(tenantData.pagamentos);
           setCorFundo(tenantData.cor_fundo);
           setCorTexto(tenantData.cor_texto);
@@ -44,6 +46,7 @@ export const DataProvider = ({children}) => {
         categorias,
         taxas,
         pagamentos,
+        horarios,
         tenant,
         corFundo,
         corTexto,

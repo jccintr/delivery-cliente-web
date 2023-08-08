@@ -11,6 +11,7 @@ import AddProduct from "./components/AddProduct/AddProduct";
 import OrderSent from './components/OrderSent/OrderSent';
 import OrderError from './components/OrderError/OrderError';
 import LastOrder from './components/LastOrder/LastOrder';
+import Horarios from './components/Horarios/Horarios';
 
 
 const App = () => {
@@ -34,8 +35,9 @@ const App = () => {
   return (
     <div className="App">
       <DataProvider>
-          <Header/>
+          
          <BrowserRouter>
+            <Header/>
             <Routes>
                <Route path="/:slug" element={<Content/>} />
                <Route path="/cart" element={<Cart itensPedido={itensPedido} deleteItemPedido={deleteItemPedido}/>} />
@@ -44,6 +46,7 @@ const App = () => {
                <Route path="/ordersent" element={<OrderSent/>}/>
                <Route path="/ordererror" element={<OrderError/>}/>
                <Route path="/status" element={<LastOrder/>}/>
+               <Route path="/horarios" element={<Horarios/>}/>
             </Routes>
             <Footer itensPedido={itensPedido}/>
          </BrowserRouter>
