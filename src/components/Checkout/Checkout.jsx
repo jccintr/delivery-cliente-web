@@ -10,6 +10,21 @@ import Api from '../../Api';
 import ReactLoading from 'react-loading';
 import ModalDialog from '../ModalDialog/ModalDialog';
 
+const insertPhoneMask = (phone) => {
+
+  const noMask = phone.replace(/\D/g, '');
+  const { length } = noMask;
+  if (length <= 11) {
+    return noMask
+      .replace(/(\d{2})(\d)/, '($1) $2')
+      .replace(length === 11 ? /(\d{5})(\d)/ : /(\d{4})(\d)/, '$1-$2');
+  }
+  return phone;
+
+}
+
+
+
 const Checkout = ({itensPedido,setItensPedido}) => {
     const navigate = useNavigate();
     const {tenant,taxas,pagamentos,slug} = useContext(DataContext);
@@ -29,6 +44,10 @@ const Checkout = ({itensPedido,setItensPedido}) => {
     const [dialogVisible,setDialogVisible] = useState(false);
   
     
+
+    useEffect(() => {
+         setTelefone(insertPhoneMask(telefone));
+      }, [telefone]);
 
     useEffect(() => {
         setTotalProdutos(itensPedido.reduce( (n,{total}) => n + total,0));
