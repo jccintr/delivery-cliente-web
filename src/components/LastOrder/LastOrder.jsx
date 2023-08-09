@@ -139,7 +139,7 @@ const onRefresh = async () => {
                    </div>}
                    <div className={styles.totalLine}>
                       <span style={{fontWeight:'bold',fontSize:14}}>Total do Pedido:</span>
-                      <span style={{fontWeight:'bold',fontSize:14}}>R$ {(totalProdutos*1+taxaEntrega*1)}</span>
+                      <span style={{fontWeight:'bold',fontSize:14}}>R$ {(totalProdutos*1+taxaEntrega*1).toFixed(2)}</span>
                    </div>
               </div>
               <div className={styles.itensArea}>

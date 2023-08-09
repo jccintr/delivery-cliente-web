@@ -16,11 +16,8 @@ const ProductList = ({produtos}) => {
             (produto) => produto.categoria_id === categoria.id
           );
           
-          
-        
           return arr.length ? <h3 id={categoria.nome} className={styles.tituloCategoria} key={categoria.id}>{categoria.nome}</h3>:"";
-
-      }
+}
 
 
 
