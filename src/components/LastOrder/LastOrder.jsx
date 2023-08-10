@@ -84,8 +84,8 @@ useEffect(() => {
 
 const onRefresh = async () => {
   setIsLoading(true);
-  let id = localStorage.getItem('lastOrder');
-  let response = await Api.getPedido(id);
+  //let id = localStorage.getItem('lastOrder');
+  let response = await Api.getPedido(lastOrder);
   if(response.status===200) {
     let json = await response.json();
     setPedido(json);
