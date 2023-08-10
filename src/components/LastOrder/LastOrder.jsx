@@ -34,7 +34,7 @@ const Delivery = () => {
 
 const LastOrder = () => {
   const navigate = useNavigate();
-  const {slug} = useContext(DataContext);
+  const {slug,lastOrder} = useContext(DataContext);
   const [pedido,setPedido] = useState({});
   const [totalProdutos,setTotalProdutos] = useState(0);
   const [taxaEntrega,setTaxaEntrega] = useState(0);
@@ -77,8 +77,8 @@ useEffect(() => {
       }
      // setIsLoading(false);
     }
-    let idPedido = localStorage.getItem('lastOrder');
-    getPedido(idPedido);
+    //let idPedido = localStorage.getItem('lastOrder');
+    getPedido(lastOrder);
 
  },[]);
 

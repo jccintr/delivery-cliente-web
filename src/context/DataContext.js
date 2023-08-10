@@ -15,6 +15,7 @@ export const DataProvider = ({children}) => {
     const [corTexto,setCorTexto] = useState('');
     const [slug,setSlug] = useState('');
     const [loadingPage,setLoadingPage] = useState(true);
+    const [lastOrder,setLastOrder] = useState(null);
 
     const getData = async () => {
         if (slug.length>0){
@@ -52,7 +53,9 @@ export const DataProvider = ({children}) => {
         corTexto,
         slug,
         setSlug,
-        loadingPage
+        loadingPage,
+        lastOrder,
+        setLastOrder
         //getProdutosError,
         //getCategoriasError,
         //getTaxasError,

@@ -27,7 +27,7 @@ const insertPhoneMask = (phone) => {
 
 const Checkout = ({itensPedido,setItensPedido}) => {
     const navigate = useNavigate();
-    const {tenant,taxas,pagamentos,slug} = useContext(DataContext);
+    const {tenant,taxas,pagamentos,slug,setLastOrder} = useContext(DataContext);
     const [entregar,setEntregar] = useState(true);
     const [nome,setNome] = useState('');
     const [telefone,setTelefone] = useState('');
@@ -92,7 +92,8 @@ const Checkout = ({itensPedido,setItensPedido}) => {
        if(response.status===201){
           const json = await response.json();
           
-          localStorage.setItem('lastOrder', json.id);  
+          //localStorage.setItem('lastOrder', json.id); 
+          setLastOrder(json.id); 
           setItensPedido([]);
           setIsLoading(false);
           navigate('/ordersent',{state: {pedido: json}});
