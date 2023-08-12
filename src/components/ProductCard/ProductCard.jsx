@@ -1,18 +1,28 @@
-import React, {useContext} from 'react'
+import React, {useContext,useState} from 'react'
 import styles from "./styles.module.css";
 import Api from '../../Api';
 import { useNavigate } from "react-router-dom";
 import DataContext from '../../context/DataContext';
+import ModalDialog from '../ModalDialog/ModalDialog';
 
 const ProductCard = ({produto}) => {
     const {tenant} = useContext(DataContext);
     const navigate = useNavigate();
+    const [dialogMessage,setDialogMessage] = useState('');
+    const [dialogVisible,setDialogVisible] = useState(false);
 
     const onProductClick = () => {
-        if (tenant.aberto) navigate("/product", { state: { produto } });
+        if (tenant.aberto){
+            navigate("/product", { state: { produto } });
+        } else {
+            showModalDialog('Lamentamos, mas esta loja está fechada no momento e não pode receber pedidos.')
+        } 
      }
 
-
+     const showModalDialog = (mensagem) => {
+        setDialogMessage(mensagem);
+        setDialogVisible(true);
+    }
 
     return (
         <div className={styles.container} onClick={onProductClick}>
@@ -26,6 +36,7 @@ const ProductCard = ({produto}) => {
                       <div className={styles.preco}>R$ {produto.preco}</div>
                   </div>
               </div>
+              {dialogVisible&&<ModalDialog mensagem={dialogMessage} setDialogVisible={setDialogVisible}/>}
         </div>
       );
 }
