@@ -17,7 +17,6 @@
     left:50%;
     transform: translate(-50%,-50%);
     background-color: white;
-   
     border-radius: 10px;
     width: 280px;
 }
@@ -45,4 +44,12 @@
     font-size: 14px;
     font-weight: normal;
     margin-bottom: 40px;
+}
+
+.botao {
+    background-color: #e9e9ed;
+    border-color: #8f8f9d;
+    border-width: 1px;
+    border-radius: 5px;
+    height: 30px;
 }

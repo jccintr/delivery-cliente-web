@@ -10,7 +10,7 @@ const ModalClosed = ({mensagem,setDialogVisible}) => {
              <div className={styles.titleContainer}><span className={styles.title}>LOJA FECHADA</span></div>
              <div className={styles.content}>
                 <span className={styles.mensagem} >{mensagem}</span>
-                <button onClick={() => setDialogVisible(false)}>Fechar</button> 
+                <button className={styles.botao} onClick={() => setDialogVisible(false)}>Fechar</button> 
              </div>
              
         </div>
