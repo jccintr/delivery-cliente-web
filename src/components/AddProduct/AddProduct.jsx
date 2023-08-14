@@ -6,7 +6,7 @@ import Api from '../../Api';
 import SelectFieldGenerico from '../SelectFieldGenerico/SelectFieldGenerico';
 import AdicionalCard from '../AdicionalCard/AdicionalCard';
 import DataContext from '../../context/DataContext';
-import ModalDialog from '../ModalDialog/ModalDialog';
+import MessageBox from '../MessageBox/MessageBox';
 
 
 
@@ -24,6 +24,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
   const [adicionais,setAdicionais] = useState([]);
   const [dialogMessage,setDialogMessage] = useState('');
   const [dialogVisible,setDialogVisible] = useState(false);
+  const [titleMessageBox,setTitleMessageBox] = useState('');
   
   useEffect(() => {
     criaArrayAdicionais();
@@ -60,7 +61,8 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
      setTotalAdicional(total);
   };
 
-  const showModalDialog = (mensagem) => {
+  const showModalDialog = (title,mensagem) => {
+      setTitleMessageBox(title);
       setDialogMessage(mensagem);
       setDialogVisible(true);
   }
@@ -68,7 +70,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
   const adicionarClick = () => {
     
     if (produto.obrigatorios.length !== selectFields.length) {
-        showModalDialog('Selecione todos os itens obrigatórios por favor.');
+        showModalDialog('Atenção','Selecione todos os itens obrigatórios por favor.');
         //alert('Selecione todos os itens obrigatórios por favor.');
     } else {
 
@@ -175,7 +177,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
             </div>
           </div>
         </div>
-        {dialogVisible&&<ModalDialog mensagem={dialogMessage} setDialogVisible={setDialogVisible}/>}
+        {dialogVisible&&<MessageBox title={titleMessageBox} mensagem={dialogMessage} setDialogVisible={setDialogVisible}/>}
     </main>
   );
 

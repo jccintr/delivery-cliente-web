@@ -1,0 +1,57 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modalContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    border-radius: 10px;
+    width: 280px;
+}
+
+.titleContainer {
+    background-color: brown;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 30px;
+}
+.title {
+    color: white;
+}
+.content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mensagem {
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 40px;
+}
+
+.botao {
+    background-color: #e9e9ed;
+    border-color: #8f8f9d;
+    border-width: 1px;
+    border-radius: 5px;
+    height: 30px;
+    color: black;
+    font-size: 14px;
+}

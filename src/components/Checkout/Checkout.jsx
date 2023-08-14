@@ -8,7 +8,7 @@ import SelectField from '../SelectField/SelectField';
 import SelectPagamento from '../SelectPagamento/SelectPagamento';
 import Api from '../../Api';
 import ReactLoading from 'react-loading';
-import ModalDialog from '../ModalDialog/ModalDialog';
+import MessageBox from '../MessageBox/MessageBox';
 
 const insertPhoneMask = (phone) => {
 
@@ -40,6 +40,7 @@ const Checkout = ({itensPedido,setItensPedido}) => {
     const [observacao,setObservacao] = useState('');
     const [formaPagamento,setFormaPagamento] = useState('Dinheiro');
     const [isLoading,setIsLoading] = useState(false);
+    const [titleMessageBox,setTitleMessageBox] = useState('');
     const [dialogMessage,setDialogMessage] = useState('');
     const [dialogVisible,setDialogVisible] = useState(false);
   
@@ -63,7 +64,8 @@ const Checkout = ({itensPedido,setItensPedido}) => {
         setTaxaEntrega(valor);
     }  
 
-    const showModalDialog = (mensagem) => {
+    const showModalDialog = (title,mensagem) => {
+        setTitleMessageBox(title);
         setDialogMessage(mensagem);
         setDialogVisible(true);
     }
@@ -78,14 +80,14 @@ const Checkout = ({itensPedido,setItensPedido}) => {
     const onEnviarPedido = async () => {
         
         if (nome.trim().length === 0 || telefone.trim().length === 0){
-            showModalDialog('Informe o seu nome e telefone por favor.');
+            showModalDialog('Atenção','Informe o seu nome e telefone por favor.');
             //alert('Informe o seu nome e telefone por favor.');
             return; 
         }
         if (entregar){
-            if (endereco.trim().length===0) { showModalDialog('Informe o seu endereço por favor'); return;}
-            if (taxaId===0) { showModalDialog('Selecione o bairro por favor.');  return;}
-            if (pagamentoId===0) { showModalDialog('Selecione a forma de pagamento por favor.'); return;}
+            if (endereco.trim().length===0) { showModalDialog('Atenção','Informe o seu endereço por favor'); return;}
+            if (taxaId===0) { showModalDialog('Atenção','Selecione o bairro por favor.');  return;}
+            if (pagamentoId===0) { showModalDialog('Atenção','Selecione a forma de pagamento por favor.'); return;}
         }
        setIsLoading(true); 
        let response = await Api.addPedido(entregar,tenant.id,nome,telefone,endereco,taxaId,pagamentoId,observacao,itensPedido);
@@ -137,7 +139,7 @@ const Checkout = ({itensPedido,setItensPedido}) => {
                 <InputField label="Observações:" placeholder="Mandar troco para 50 reais..." value={observacao} setValue={setObservacao}/>
                 <button className={styles.botao}  onClick={onEnviarPedido}>{isLoading?<ReactLoading type="bars" color="#ffffff" height={30} width={30}/>:'ENVIAR O PEDIDO'}</button>
             </div>
-            {dialogVisible&&<ModalDialog mensagem={dialogMessage} setDialogVisible={setDialogVisible}/>}
+            {dialogVisible&&<MessageBox title={titleMessageBox} mensagem={dialogMessage} setDialogVisible={setDialogVisible}/>}
        </main>
       );
 
