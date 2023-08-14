@@ -26,7 +26,7 @@ const ProductList = ({produtos}) => {
   return (
     <div className={styles.container}>
        
-       {produtos.length===0 ? <p className={styles.noRecords}>Carregando dados.</p>:""}
+       {produtos.length===0 ? <p className={styles.noRecords}>Produtos não encontrados.</p>:""}
 
         {categorias.map((categoria) => (
                 <div  key={categoria.id}>

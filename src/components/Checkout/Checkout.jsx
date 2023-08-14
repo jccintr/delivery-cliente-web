@@ -87,8 +87,10 @@ const Checkout = ({itensPedido,setItensPedido}) => {
         if (entregar){
             if (endereco.trim().length===0) { showModalDialog('Atenção','Informe o seu endereço por favor'); return;}
             if (taxaId===0) { showModalDialog('Atenção','Selecione o bairro por favor.');  return;}
-            if (pagamentoId===0) { showModalDialog('Atenção','Selecione a forma de pagamento por favor.'); return;}
-        }
+       }
+
+       if (pagamentoId===0) { showModalDialog('Atenção','Selecione a forma de pagamento por favor.'); return;}
+       
        setIsLoading(true); 
        let response = await Api.addPedido(entregar,tenant.id,nome,telefone,endereco,taxaId,pagamentoId,observacao,itensPedido);
        if(response.status===201){
