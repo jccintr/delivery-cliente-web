@@ -81,7 +81,6 @@ const Checkout = ({itensPedido,setItensPedido}) => {
         
         if (nome.trim().length === 0 || telefone.trim().length === 0){
             showModalDialog('Atenção','Informe o seu nome e telefone por favor.');
-            //alert('Informe o seu nome e telefone por favor.');
             return; 
         }
         if (entregar){
@@ -90,7 +89,7 @@ const Checkout = ({itensPedido,setItensPedido}) => {
        }
 
        if (pagamentoId===0) { showModalDialog('Atenção','Selecione a forma de pagamento por favor.'); return;}
-       
+
        setIsLoading(true); 
        let response = await Api.addPedido(entregar,tenant.id,nome,telefone,endereco,taxaId,pagamentoId,observacao,itensPedido);
        if(response.status===201){

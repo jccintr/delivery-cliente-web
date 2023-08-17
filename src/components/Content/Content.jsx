@@ -39,7 +39,7 @@ const Content = () => {
         <ProductList produtos={produtos}/>
     </main>):(<main className={styles.loading}>
       <ReactLoading  type="spin" color="#C0C0C0" height={150} width={150} />
-      <span className={styles.loadingMessage}>Um momento por favor...</span>
+      <span className={styles.loadingMessage}>Carregando Cardápio...</span>
     </main>
       
     )}
