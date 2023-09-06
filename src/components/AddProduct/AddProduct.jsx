@@ -155,7 +155,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
             <p className={styles.observacaoLabel}>Observações:</p>
             <textarea
               className={styles.inputObservacao}
-              placeholder="viajar na maionese..."
+              
               onChange={(e)=> setObservacao(e.target.value)}
             ></textarea>
           </div>
