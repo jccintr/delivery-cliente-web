@@ -59,6 +59,27 @@
   }
 
   .botaoEntregarSelected {
+    border-width: 4px;
+    border-style: dashed;
+    border-color: darkred;
+    background-color: white;
+    height: 30px;
+    width: 100px;
+    color:darkred;
+    font-weight: bold;
+  }
+
+  .botaoRetirar {
+    border-style: dashed;
+    border-color: lightgrey;
+    background-color: white;
+    height: 30px;
+    width: 100px;
+    color: lightgrey;
+  }
+
+  .botaoRetirarSelected {
+    border-width: 4px;
     border-style: dashed;
     border-color: darkgreen;
     background-color: white;
