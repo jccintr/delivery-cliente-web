@@ -30,7 +30,7 @@ const Checkout = ({itensPedido,setItensPedido}) => {
     const {tenant,taxas,pagamentos,slug,setLastOrder} = useContext(DataContext);
     const [entregar,setEntregar] = useState(true);
     const [nome,setNome] = useState('');
-    const [telefone,setTelefone] = useState('');
+    const [telefone,setTelefone] = useState(localStorage.getItem('pedidoTelefone')==null?'':localStorage.getItem('pedidoTelefone'));
     const [endereco,setEndereco] = useState('');
     const [totalProdutos,setTotalProdutos] = useState(0);
     const [taxaEntrega,setTaxaEntrega] = useState(0);
@@ -111,7 +111,8 @@ const Checkout = ({itensPedido,setItensPedido}) => {
           
           //localStorage.setItem('lastOrder', json.id); 
           localStorage.setItem('pedidoNome', nome); 
-         // localStorage.setItem('pedidoTelefone', '35999122008'); 
+         
+          localStorage.setItem('pedidoTelefone', telefone); 
           localStorage.setItem('pedidoEndereco', endereco); 
           setLastOrder(json.id); 
           setItensPedido([]);
