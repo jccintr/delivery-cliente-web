@@ -6,6 +6,11 @@
 
 }
 
+.link {
+  text-decoration: none;
+  color: #000;
+}
+
 .tituloCategoria {
     width: 100%;
     margin-bottom: 0;

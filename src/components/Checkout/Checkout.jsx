@@ -44,7 +44,21 @@ const Checkout = ({itensPedido,setItensPedido}) => {
     const [dialogMessage,setDialogMessage] = useState('');
     const [dialogVisible,setDialogVisible] = useState(false);
   
-    
+    useEffect(() => {
+        const nome = localStorage.getItem('pedidoNome');
+        if (nome){
+            setNome(nome);
+        }
+        // const telefone = localStorage.getItem('pedidoTelefone');
+        // if (telefone){
+        //     setTelefone(telefone);
+        // }
+        const endereco = localStorage.getItem('pedidoEndereco');
+        if (endereco){
+            setEndereco(endereco);
+        }
+
+     }, []);
 
     useEffect(() => {
          setTelefone(insertPhoneMask(telefone));
@@ -96,6 +110,9 @@ const Checkout = ({itensPedido,setItensPedido}) => {
           const json = await response.json();
           
           //localStorage.setItem('lastOrder', json.id); 
+          localStorage.setItem('pedidoNome', nome); 
+         // localStorage.setItem('pedidoTelefone', '35999122008'); 
+          localStorage.setItem('pedidoEndereco', endereco); 
           setLastOrder(json.id); 
           setItensPedido([]);
           setIsLoading(false);

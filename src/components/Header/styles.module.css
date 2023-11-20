@@ -1,3 +1,5 @@
+
+
 .container {
     position:absolute; 
     top:0px; 
@@ -47,5 +49,11 @@
 }
 
 .infoText {
-       font-size: 12px;
+    font-size: 12px;
+}
+
+@media (max-width:300px) {
+    .infoText {
+        font-size: 10px;
+ }
 }

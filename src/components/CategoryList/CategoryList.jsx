@@ -7,7 +7,7 @@ const CategoryList = ({categorias}) => {
     return (
       <div className={styles.scrollmenu}>
 
-       {categorias.map((categoria) =><a className={styles.categoryItem} key={categoria.id} href={'#'+categoria.nome}>{categoria.nome}</a>)}
+       {categorias.map((categoria) =><a id="topo" className={styles.categoryItem} key={categoria.id} href={'#'+categoria.nome}>{categoria.nome}</a>)}
     
     </div>
     )
