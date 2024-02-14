@@ -6,6 +6,8 @@ import DataContext from '../../context/DataContext';
 import SearchField from '../SearchField/SearchField';
 import { useParams } from "react-router-dom";
 import ReactLoading from 'react-loading';
+import logo from '../../assets/logo-delivroo-azul-branco.png';
+import { MdStayCurrentLandscape } from 'react-icons/md';
 
 const Content = () => {
   const {slug} = useParams();
@@ -38,7 +40,8 @@ const Content = () => {
         <SearchField onChange={onchangeInput} search={search} onClearClick={onClearClick}/>
         <ProductList produtos={produtos}/>
     </main>):(<main className={styles.loading}>
-      <ReactLoading  type="spin" color="#C0C0C0" height={150} width={150} />
+      <img src={logo} className={styles.logo} alt="logo delivroo" />
+      <ReactLoading  type="bubbles" color="#0073e6" height={150} width={150} />
       <span className={styles.loadingMessage}>Carregando Cardápio...</span>
     </main>
       
