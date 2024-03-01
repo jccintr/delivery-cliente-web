@@ -8,6 +8,7 @@ import Content from "./components/Content/Content";
 import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
 import AddProduct from "./components/AddProduct/AddProduct";
+import AddPizza from './components/AddPizza/AddPizza';
 import OrderSent from './components/OrderSent/OrderSent';
 import OrderError from './components/OrderError/OrderError';
 import LastOrder from './components/LastOrder/LastOrder';
@@ -43,6 +44,7 @@ const App = () => {
                <Route path="/cart" element={<Cart itensPedido={itensPedido} deleteItemPedido={deleteItemPedido}/>} />
                <Route path="/checkout" element={<Checkout itensPedido={itensPedido} setItensPedido={setItensPedido}/>} />
                <Route path="/product" element={<AddProduct itensPedido={itensPedido} addItemPedido={addItemPedido}/>} />
+               <Route path="/pizza" element={<AddPizza itensPedido={itensPedido} addItemPedido={addItemPedido}/>} />
                <Route path="/ordersent" element={<OrderSent/>}/>
                <Route path="/ordererror" element={<OrderError/>}/>
                <Route path="/status" element={<LastOrder/>}/>

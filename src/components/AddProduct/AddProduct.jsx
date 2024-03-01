@@ -71,7 +71,6 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
     
     if (produto.obrigatorios.length !== selectFields.length) {
         showModalDialog('Atenção','Selecione todos os itens obrigatórios por favor.');
-        //alert('Selecione todos os itens obrigatórios por favor.');
     } else {
 
       let obrigatorios = '';
