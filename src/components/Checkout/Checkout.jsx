@@ -9,6 +9,7 @@ import SelectPagamento from '../SelectPagamento/SelectPagamento';
 import Api from '../../Api';
 import ReactLoading from 'react-loading';
 import MessageBox from '../MessageBox/MessageBox';
+import { FaRegCheckCircle } from "react-icons/fa";
 
 const insertPhoneMask = (phone) => {
 
@@ -135,8 +136,8 @@ const Checkout = ({itensPedido,setItensPedido}) => {
                     <div className={styles.titulo}>Finalizando Pedido</div>
                 </div>
                 <div className={styles.deliveryArea} >
-                    <button className={entregar?styles.botaoEntregarSelected:styles.botaoEntregar} onClick={()=>setEntregar(true)}>ENTREGAR</button>
-                    <button className={entregar?styles.botaoRetirar:styles.botaoRetirarSelected} onClick={()=>{setEntregar(false);setTaxaEntrega(0);}}>RETIRAR</button>
+                    <button className={entregar?styles.selectButtonChecked:styles.selectButton} onClick={()=>setEntregar(true)}>{entregar?<FaRegCheckCircle />:''}ENTREGAR</button>
+                    <button className={!entregar?styles.selectButtonChecked:styles.selectButton} onClick={()=>{setEntregar(false);setTaxaEntrega(0);}}>{!entregar?<FaRegCheckCircle />:''}RETIRAR</button>
                 </div>
                 <InputField label="Nome:" placeholder="Informe o seu nome" value={nome} setValue={setNome}/>
                 <InputField label="Telefone:" placeholder="Informe o seu WhatsApp com DDD" value={telefone} setValue={setTelefone}/>

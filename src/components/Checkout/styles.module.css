@@ -49,6 +49,35 @@
      margin-bottom: 20px;
   }
 
+  .selectButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-style: dashed;
+    border-radius: 5px;
+    border-color: lightgray;
+    background-color: white;
+    height: 30px;
+    width: 120px;
+    color: lightgray;
+   }
+  
+   .selectButtonChecked {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: darkgreen;
+    background-color: white;
+    height: 30px;
+    width: 120px;
+    color:darkgreen;
+    font-weight: bold;
+   }
+
   .botaoEntregar {
     border-style: dashed;
     border-color: lightgrey;
