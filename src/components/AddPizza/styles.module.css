@@ -1,0 +1,191 @@
+.container {
+    background-color:white;
+    position:absolute; 
+    top:152px; 
+    bottom:50px; 
+    left:0px; 
+    right:0px;
+    overflow:auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .body {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+
+  .titleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .title {
+      color: black;
+      text-align: left;
+      width: 330px;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+  }
+
+  .subTitle {
+    color: black;
+    text-align: left;
+    width: 330px;
+    font-size: 16px;
+  }
+ 
+   .deliveryArea {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+ }
+
+ .botaoEntregar {
+  border-style: dashed;
+  border-color: lightgrey;
+  background-color: white;
+  height: 30px;
+  width: 100px;
+  color: lightgrey;
+}
+
+.botaoEntregarSelected {
+  border-width: 4px;
+  border-style: dashed;
+  border-color: darkred;
+  background-color: white;
+  height: 30px;
+  width: 100px;
+  color:darkred;
+  font-weight: bold;
+}
+
+ .botaoRetirar {
+  border-style: dashed;
+  border-color: lightgrey;
+  background-color: white;
+  height: 30px;
+  width: 100px;
+  color: lightgrey;
+}
+
+.botaoRetirarSelected {
+  border-width: 4px;
+  border-style: dashed;
+  border-color: darkgreen;
+  background-color: white;
+  height: 30px;
+  width: 100px;
+  color:darkgreen;
+  font-weight: bold;
+}
+
+  
+
+  .imagemProduto {
+      margin-top: 10px;
+      align-items: center;
+      width: 200px;
+      border-radius: 10px;
+    }
+    .ingredientes {
+      width: 330px;
+      color: black;
+      text-align: left;
+      font-style: italic;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .containerObservacao {
+      width: 100%;
+      text-align: left;
+    }
+    .observacaoLabel {
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    
+    .inputObservacao {
+      width: 330px;
+      height: 50px;
+      resize: none;
+      padding: 2px;
+    }
+    
+    .containerQuantidade {
+      width: 330px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    
+    .divInputQuantidade {
+      width: 100px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    
+    .botaoQuantidade {
+      width: 40px;
+      font-weight: bold;
+      background: #f2f2f2;
+      border-radius: 4px;
+      padding: 8px 5px 8px 5px;
+      border: 1px solid #ddd;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      color: black;
+    }
+    
+    .inputQuantidade {
+      height: 34px;
+      width: 30px;
+      text-align: center;
+      font-size: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    
+    .botaoAdicionar {
+      padding: 10px;
+      background-color: darkgreen;
+      color: white;
+      border-width: 0;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    
+   
+    
+    @media (min-width:768px) {
+  
+      .body {
+        border-color: lightgray;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+      .imagemProduto {
+        margin-top: 10px;
+        align-items: center;
+        width: 250px;
+        border-radius: 10px;
+      }
+    
+    }
