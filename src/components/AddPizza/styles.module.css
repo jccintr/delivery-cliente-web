@@ -48,45 +48,55 @@
     margin-bottom: 20px;
  }
 
- .botaoEntregar {
+ .selectButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
   border-style: dashed;
-  border-color: lightgrey;
+  border-radius: 5px;
+  border-color: lightgray;
   background-color: white;
   height: 30px;
-  width: 100px;
-  color: lightgrey;
-}
+  width: 120px;
+  color: lightgray;
+ }
 
-.botaoEntregarSelected {
-  border-width: 4px;
-  border-style: dashed;
-  border-color: darkred;
-  background-color: white;
-  height: 30px;
-  width: 100px;
-  color:darkred;
-  font-weight: bold;
-}
+ 
 
- .botaoRetirar {
-  border-style: dashed;
-  border-color: lightgrey;
-  background-color: white;
-  height: 30px;
-  width: 100px;
-  color: lightgrey;
-}
-
-.botaoRetirarSelected {
-  border-width: 4px;
-  border-style: dashed;
+ .selectButtonChecked {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border-style: solid;
+  border-radius: 5px;
   border-color: darkgreen;
   background-color: white;
   height: 30px;
-  width: 100px;
+  width: 120px;
   color:darkgreen;
   font-weight: bold;
-}
+ }
+
+ .selectFlavorButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border-style: dashed;
+ 
+  border-color: gray;
+  background-color: white;
+  height: 60px;
+  width: 300px;
+  color: gray;
+  margin-bottom: 10px;
+ }
+
+ 
+
+
 
   
 

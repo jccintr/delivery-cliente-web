@@ -7,6 +7,7 @@ import SelectFieldGenerico from '../SelectFieldGenerico/SelectFieldGenerico';
 import AdicionalCard from '../AdicionalCard/AdicionalCard';
 import DataContext from '../../context/DataContext';
 import MessageBox from '../MessageBox/MessageBox';
+import { FaRegCheckCircle } from "react-icons/fa";
 
 
 const AddPizza = ({itensPedido,addItemPedido}) => {
@@ -25,6 +26,7 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
     const [dialogVisible,setDialogVisible] = useState(false);
     const [titleMessageBox,setTitleMessageBox] = useState('');
     const [tamanho,setTamanho] = useState(1);
+    const [sabores,setSabores] = useState(1);
 
     const adicionarClick = () => { 
     }
@@ -52,12 +54,25 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
               <div className={styles.title}>Pizzas</div>
           </div>
           <div className={styles.deliveryArea}>
-              <div className={styles.subTitle}>Escolha o tamanho:</div>
+              <div className={styles.subTitle}>Escolha o tamanho da pizza:</div>
           </div>
           <div className={styles.deliveryArea} >
-                    <button className={tamanho===1?styles.botaoEntregarSelected:styles.botaoEntregar} onClick={()=>{}}>Grande</button>
-                    <button className={tamanho===2?styles.botaoRetirar:styles.botaoRetirarSelected} onClick={()=>{}}>Broto</button>
+               <button className={tamanho===1?styles.selectButtonChecked:styles.selectButton} onClick={()=>setTamanho(1)}>{tamanho===1?<FaRegCheckCircle />:''}Grande</button>
+               <button className={tamanho===2?styles.selectButtonChecked:styles.selectButton} onClick={()=>setTamanho(2)}>{tamanho===2?<FaRegCheckCircle />:''}Broto</button>
           </div>
+          <div className={styles.deliveryArea}>
+              <div className={styles.subTitle}>Escolha a quantidade de sabores:</div>
+          </div>
+          <div className={styles.deliveryArea} >
+               <button className={sabores===1?styles.selectButtonChecked:styles.selectButton} onClick={()=>setSabores(1)}>{sabores===1?<FaRegCheckCircle />:''}Um Sabor</button>
+               <button className={sabores===2?styles.selectButtonChecked:styles.selectButton} onClick={()=>setSabores(2)}>{sabores===2?<FaRegCheckCircle />:''}Dois Sabores</button>
+          </div>
+          <div className={styles.deliveryArea}>
+              <div className={styles.subTitle}>{sabores===1?'Escolha o sabor:':'Escolha os sabores:'}</div>
+          </div>
+          <button className={styles.selectFlavorButton} onClick={()=>{}}>{sabores===2?'Selecione o Primeiro Sabor':'Selecione o Sabor'}</button>
+          {sabores===2&&<button className={styles.selectFlavorButton} onClick={()=>{}}>Selecione o Segundo Sabor</button>}
+          
           
           
           
