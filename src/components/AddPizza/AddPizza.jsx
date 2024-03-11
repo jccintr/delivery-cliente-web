@@ -10,11 +10,20 @@ import MessageBox from '../MessageBox/MessageBox';
 import { FaRegCheckCircle } from "react-icons/fa";
 
 
+const Pizza = ({pizza,tamanho}) => {
+   return (
+      <div className={styles.pizzaContainer}>
+        <p className={styles.pizzaNome}>{pizza.nome}</p>
+        <p className={styles.pizzaNome}>R$ {tamanho===1?pizza.grande.toFixed(2):pizza.broto.toFixed(2)}</p>
+      </div>
+   );
+}
+
+
 const AddPizza = ({itensPedido,addItemPedido}) => {
-    const {slug} = useContext(DataContext);
+    const {slug,pizzaSabor1,pizzaSabor2,tamanhoPizza,setTamanhoPizza,saboresPizza,setSaboresPizza} = useContext(DataContext);
     const navigate = useNavigate();
     const params = useLocation();
-    const {produto} = params.state;
     const [quantidade, setQuantidade] = useState(1);
     const valorUnitario = 10.00 //produto.preco;
     const [totalAdicional,setTotalAdicional] = useState(0);
@@ -22,11 +31,13 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
     const [observacao,setObservacao] = useState('');
     const [selectFields,setSelectFields] = useState([]);
     const [adicionais,setAdicionais] = useState([]);
-    const [dialogMessage,setDialogMessage] = useState('');
-    const [dialogVisible,setDialogVisible] = useState(false);
     const [titleMessageBox,setTitleMessageBox] = useState('');
-    const [tamanho,setTamanho] = useState(1);
-    const [sabores,setSabores] = useState(1);
+   
+    useEffect(() => {
+      CalculaTotal();
+    }, [quantidade,tamanhoPizza,pizzaSabor1,pizzaSabor2,saboresPizza]);
+   
+    
 
     const adicionarClick = () => { 
     }
@@ -41,8 +52,39 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
         }
       };
       const CalculaTotal = () => {
-        let total = quantidade * (parseFloat(valorUnitario) + parseFloat(totalAdicional));
-        setTotal(total);
+      
+        let total = 0
+        if (saboresPizza === 1 && pizzaSabor1 !== null){
+
+          if(tamanhoPizza===1){
+              total = quantidade * pizzaSabor1.grande;
+          } else {
+            total = quantidade * pizzaSabor1.broto;
+          }   
+          setTotal(total);
+          return;
+        }
+
+        if (saboresPizza === 2 && pizzaSabor1 !== null && pizzaSabor2 !== null){
+
+          if(tamanhoPizza===1){
+            if(pizzaSabor2.grande > pizzaSabor1.grande){
+              total = quantidade * pizzaSabor2.grande;
+            } else {
+              total = quantidade * pizzaSabor1.grande;
+            }
+          }
+          else {
+            if(pizzaSabor2.grande > pizzaSabor1.grande){
+              total = quantidade * pizzaSabor2.broto;
+            } else {
+              total = quantidade * pizzaSabor1.broto;
+            }
+          }
+          setTotal(total);
+          return;
+        }
+
       };
 
 
@@ -57,21 +99,21 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
               <div className={styles.subTitle}>Escolha o tamanho da pizza:</div>
           </div>
           <div className={styles.deliveryArea} >
-               <button className={tamanho===1?styles.selectButtonChecked:styles.selectButton} onClick={()=>setTamanho(1)}>{tamanho===1?<FaRegCheckCircle />:''}Grande</button>
-               <button className={tamanho===2?styles.selectButtonChecked:styles.selectButton} onClick={()=>setTamanho(2)}>{tamanho===2?<FaRegCheckCircle />:''}Broto</button>
+               <button className={tamanhoPizza===1?styles.selectButtonChecked:styles.selectButton} onClick={()=>setTamanhoPizza(1)}>{tamanhoPizza===1?<FaRegCheckCircle />:''}Grande</button>
+               <button className={tamanhoPizza===2?styles.selectButtonChecked:styles.selectButton} onClick={()=>setTamanhoPizza(2)}>{tamanhoPizza===2?<FaRegCheckCircle />:''}Broto</button>
           </div>
           <div className={styles.deliveryArea}>
               <div className={styles.subTitle}>Escolha a quantidade de sabores:</div>
           </div>
           <div className={styles.deliveryArea} >
-               <button className={sabores===1?styles.selectButtonChecked:styles.selectButton} onClick={()=>setSabores(1)}>{sabores===1?<FaRegCheckCircle />:''}Um Sabor</button>
-               <button className={sabores===2?styles.selectButtonChecked:styles.selectButton} onClick={()=>setSabores(2)}>{sabores===2?<FaRegCheckCircle />:''}Dois Sabores</button>
+               <button className={saboresPizza===1?styles.selectButtonChecked:styles.selectButton} onClick={()=>setSaboresPizza(1)}>{saboresPizza===1?<FaRegCheckCircle />:''}Um Sabor</button>
+               <button className={saboresPizza===2?styles.selectButtonChecked:styles.selectButton} onClick={()=>setSaboresPizza(2)}>{saboresPizza===2?<FaRegCheckCircle />:''}Dois Sabores</button>
           </div>
           <div className={styles.deliveryArea}>
-              <div className={styles.subTitle}>{sabores===1?'Escolha o sabor:':'Escolha os sabores:'}</div>
+              <div className={styles.subTitle}>{saboresPizza===1?'Escolha o sabor:':'Escolha os sabores:'}</div>
           </div>
-          <button className={styles.selectFlavorButton} onClick={()=>{}}>{sabores===2?'Selecione o Primeiro Sabor':'Selecione o Sabor'}</button>
-          {sabores===2&&<button className={styles.selectFlavorButton} onClick={()=>{}}>Selecione o Segundo Sabor</button>}
+          <button className={styles.selectFlavorButton} onClick={()=>navigate("/pizzas",{ state: { sabor: 1 } })}>{!pizzaSabor1?saboresPizza===2?'Selecione o primeiro sabor':'Selecione o sabor':<Pizza pizza={pizzaSabor1} tamanho={tamanhoPizza}/>}</button>
+          {saboresPizza===2&&<button className={styles.selectFlavorButton} onClick={()=>navigate("/pizzas",{ state: { sabor: 2 } })}>{!pizzaSabor2?'Selecione o segundo sabor':<Pizza pizza={pizzaSabor2} tamanho={tamanhoPizza}/>}</button>}
           
           
           
@@ -98,7 +140,7 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
             </div>
           </div>
         </div>
-        {dialogVisible&&<MessageBox title={titleMessageBox} mensagem={dialogMessage} setDialogVisible={setDialogVisible}/>}
+        
     </main>
   )
 }

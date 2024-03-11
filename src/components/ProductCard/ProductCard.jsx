@@ -14,7 +14,7 @@ const ProductCard = ({produto}) => {
 
     const onProductClick = () => {
         if (tenant.aberto){
-            navigate("/product", { state: { produto } });
+            navigate("/pizza", { state: { produto } });
         } else {
             showModalDialog('Lamentamos, mas nossa loja está fechada no momento e não pode receber pedidos.')
         } 

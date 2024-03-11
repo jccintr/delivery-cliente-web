@@ -1,0 +1,31 @@
+.container {
+    background-color:white;
+    position:absolute; 
+    top:152px; 
+    bottom:50px; 
+    left:0px; 
+    right:0px;
+    overflow:auto;
+    padding-left: 10px;
+    padding-right: 10px;
+ 
+ }
+
+ .titleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .title {
+      color: black;
+      text-align: left;
+      width: 100%;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+  }
+
+ .spacer {
+    min-height: 10px;
+ }

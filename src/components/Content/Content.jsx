@@ -7,7 +7,7 @@ import SearchField from '../SearchField/SearchField';
 import { useParams } from "react-router-dom";
 import ReactLoading from 'react-loading';
 import logo from '../../assets/logo-delivroo-azul-branco.png';
-import { MdStayCurrentLandscape } from 'react-icons/md';
+
 
 const Content = () => {
   const {slug} = useParams();
@@ -37,7 +37,7 @@ const Content = () => {
     {!loadingPage?(
     <main className={styles.container}>
         <CategoryList categorias={categorias}/>
-        <SearchField onChange={onchangeInput} search={search} onClearClick={onClearClick}/>
+        <SearchField onChange={onchangeInput} search={search} onClearClick={onClearClick} placeholder='Pesquisar por produto ou ingrediente'/>
         <ProductList produtos={produtos}/>
     </main>):(<main className={styles.loading}>
       <img src={logo} className={styles.logo} alt="logo delivroo" />

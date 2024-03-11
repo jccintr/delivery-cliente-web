@@ -1,0 +1,68 @@
+.container {
+    display: flex;
+    width: 100%;
+    border-bottom: 0.5px solid lightgrey;
+    align-items: center;
+  }
+  
+  .imageArea {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+  }
+  
+  .imagemProduto {
+    width: auto;
+    height: auto;
+    margin: 10px;
+    max-width: 80px;
+    max-height: 60px;
+    border-radius: 10px;
+  }
+  
+  .coluna {
+    flex-direction: column;
+    margin-right: 10px;
+    flex: 1;
+    margin-left: 10px;
+    
+  }
+  
+  .produtoNome {
+    color: black;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 16px;
+  }
+  
+  .produtoIngredientes {
+    color: gray;
+    text-align: left;
+    font-style: italic;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .preco {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    color: darkgreen;
+    width: 120px;
+    font-weight: bold;
+    float: right;
+    font-size: 14px;
+  }
+  
+  @media (min-width:768px) {
+    .container {
+     border: 0.5px solid lightgrey;
+     border-radius: 10px;
+     min-height: 100px;
+     
+    }
+    .container:hover {
+      background-color:whitesmoke;
+    }
+  }

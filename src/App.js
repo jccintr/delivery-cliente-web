@@ -5,6 +5,7 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Content from "./components/Content/Content";
+import Pizzas from './components/Pizzas/Pizzas';
 import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
 import AddProduct from "./components/AddProduct/AddProduct";
@@ -41,6 +42,7 @@ const App = () => {
             <Header/>
             <Routes>
                <Route path="/:slug" element={<Content/>} />
+               <Route path="/pizzas" element={<Pizzas/>} />
                <Route path="/cart" element={<Cart itensPedido={itensPedido} deleteItemPedido={deleteItemPedido}/>} />
                <Route path="/checkout" element={<Checkout itensPedido={itensPedido} setItensPedido={setItensPedido}/>} />
                <Route path="/product" element={<AddProduct itensPedido={itensPedido} addItemPedido={addItemPedido}/>} />

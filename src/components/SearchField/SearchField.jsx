@@ -3,13 +3,13 @@ import styles from "./styles.module.css";
 import { FaSearch } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 
-const SearchField = ({onChange,search,onClearClick}) => {
+const SearchField = ({onChange,search,onClearClick,placeholder}) => {
   return (
     <div className={styles.container}>
           <FaSearch  size={18} /> 
           <input
             className={styles.input}
-            placeholder="Pesquisar por produto ou ingrediente"
+            placeholder={placeholder}
             type="text"
             onChange={onChange}
             value={search}
