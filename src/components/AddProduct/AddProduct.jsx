@@ -51,6 +51,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
     let total = quantidade * (parseFloat(valorUnitario) + parseFloat(totalAdicional));
     setTotal(total);
   };
+  
   const CalculaTotalAdicionais = () => {
      let total = 0;
      for (let i=0;i<adicionais.length;i++){

@@ -4,7 +4,7 @@ import { MdClose } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import Api from '../../Api';
 import SelectFieldGenerico from '../SelectFieldGenerico/SelectFieldGenerico';
-import AdicionalCard from '../AdicionalCard/AdicionalCard';
+import AdicionalPizzaCard from '../AdicionalPizzaCard/AdicionalPizzaCard';
 import DataContext from '../../context/DataContext';
 import MessageBox from '../MessageBox/MessageBox';
 import { FaRegCheckCircle } from "react-icons/fa";
@@ -21,7 +21,7 @@ const Pizza = ({pizza,tamanho}) => {
 
 
 const AddPizza = ({itensPedido,addItemPedido}) => {
-    const {slug,pizzaSabor1,pizzaSabor2,tamanhoPizza,setTamanhoPizza,saboresPizza,setSaboresPizza} = useContext(DataContext);
+    const {slug,pizzaSabor1,pizzaSabor2,tamanhoPizza,setTamanhoPizza,saboresPizza,setSaboresPizza,adicionaisPizza} = useContext(DataContext);
     const navigate = useNavigate();
     const params = useLocation();
     const [quantidade, setQuantidade] = useState(1);
@@ -33,6 +33,11 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
     const [adicionais,setAdicionais] = useState([]);
     const [titleMessageBox,setTitleMessageBox] = useState('');
    
+
+    useEffect(() => {
+      criaArrayAdicionais();
+    }, []);
+
     useEffect(() => {
       CalculaTotal();
     }, [quantidade,tamanhoPizza,pizzaSabor1,pizzaSabor2,saboresPizza]);
@@ -51,15 +56,16 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
           setQuantidade(quantidade - 1);
         }
       };
+      
       const CalculaTotal = () => {
       
         let total = 0
         if (saboresPizza === 1 && pizzaSabor1 !== null){
 
           if(tamanhoPizza===1){
-              total = quantidade * pizzaSabor1.grande;
+              total = quantidade * (pizzaSabor1.grande + totalAdicional);
           } else {
-            total = quantidade * pizzaSabor1.broto;
+            total = quantidade * (pizzaSabor1.broto + totalAdicional);
           }   
           setTotal(total);
           return;
@@ -86,6 +92,46 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
         }
 
       };
+
+      const CalculaTotalAdicionais = () => {
+        let total = 0;
+        for (let i=0;i<adicionais.length;i++){
+           if(adicionais[i].selecionado){
+             if(tamanhoPizza===1){
+                 total = total + parseFloat(adicionais[i].grande);
+             } else {
+               total = total + parseFloat(adicionais[i].broto);
+             }
+           }
+        }
+        setTotalAdicional(total);
+     };
+
+      const onAdicionalChange = (id) => {
+   
+        let n = adicionais;
+        
+        for (let i=0;i<n.length;i++){
+            if(n[i].id==id){
+               n[i].selecionado = !n[i].selecionado;
+            }
+        }
+        
+        setAdicionais(n);
+        CalculaTotalAdicionais();
+        CalculaTotal();
+      }
+
+      const criaArrayAdicionais = () => {
+        let n = [];
+       
+        for (let i=0;i<adicionaisPizza.length;i++){
+          const newAdicional = {id:i,nome: adicionaisPizza[i].nome,broto: adicionaisPizza[i].broto,grande: adicionaisPizza[i].grande,selecionado: false}
+          n.push(newAdicional);
+        }
+ 
+        setAdicionais(n);
+   }
 
 
   return (
@@ -115,6 +161,10 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
           <button className={styles.selectFlavorButton} onClick={()=>navigate("/pizzas",{ state: { sabor: 1 } })}>{!pizzaSabor1?saboresPizza===2?'Selecione o primeiro sabor':'Selecione o sabor':<Pizza pizza={pizzaSabor1} tamanho={tamanhoPizza}/>}</button>
           {saboresPizza===2&&<button className={styles.selectFlavorButton} onClick={()=>navigate("/pizzas",{ state: { sabor: 2 } })}>{!pizzaSabor2?'Selecione o segundo sabor':<Pizza pizza={pizzaSabor2} tamanho={tamanhoPizza}/>}</button>}
           
+          {adicionais.length>0&&<div className={styles.containerObservacao}>
+            <p className={styles.observacaoLabel}>Adicione ingredientes:</p>
+          </div>}
+          {adicionais.map((adicional,index)=><AdicionalPizzaCard onChange={onAdicionalChange} key={index} adicional={adicional} tamanhoPizza={tamanhoPizza}/>)}
           
           
           
