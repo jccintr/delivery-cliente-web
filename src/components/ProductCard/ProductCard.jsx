@@ -14,7 +14,12 @@ const ProductCard = ({produto}) => {
 
     const onProductClick = () => {
         if (tenant.aberto){
-            navigate("/pizza", { state: { produto } });
+            if(produto.pizza){
+                navigate("/pizza", { state: { produto } });
+            } else {
+                navigate("/product", { state: { produto } });
+            }
+            
         } else {
             showModalDialog('Lamentamos, mas nossa loja está fechada no momento e não pode receber pedidos.')
         } 
@@ -34,7 +39,7 @@ const ProductCard = ({produto}) => {
                   <p className={styles.produtoNome}>{produto.nome}</p>
                   <div className={styles.produtoIngredientes}>{produto.descricao}</div>
                   <div className={styles.linhaPreco}>
-                      <div className={styles.preco}>R$ {produto.preco}</div>
+                      {!produto.pizza&&<div className={styles.preco}>R$ {produto.preco}</div>}
                   </div>
               </div>
               {dialogVisible&&<ModalClosed mensagem={dialogMessage} setDialogVisible={setDialogVisible}/>}

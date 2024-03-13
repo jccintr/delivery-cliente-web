@@ -5,6 +5,7 @@ const DataContext = createContext({});
 
 export const DataProvider = ({children}) => {
     const [produtos, setProdutos] = useState([]);
+    const [pizzas, setPizzas] = useState([]);
     const [produtosBackup, setProdutosBackup] = useState([]);
     const [pizzaSabor1,setPizzaSabor1] = useState(null);
     const [pizzaSabor2,setPizzaSabor2] = useState(null);
@@ -26,6 +27,7 @@ export const DataProvider = ({children}) => {
           let tenantData = await Api.getTenant(slug);
           setTenant(tenantData);
           setProdutos(tenantData.produtos);
+          setPizzas(tenantData.pizzas);
           setProdutosBackup(tenantData.produtos);
           setCategorias(tenantData.categorias);
           setTaxas(tenantData.taxas);
@@ -67,7 +69,9 @@ export const DataProvider = ({children}) => {
         tamanhoPizza,
         setTamanhoPizza,
         saboresPizza,
-        setSaboresPizza
+        setSaboresPizza,
+        pizzas,
+        setPizzas
 
         //getProdutosError,
         //getCategoriasError,

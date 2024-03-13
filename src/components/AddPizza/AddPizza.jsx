@@ -14,7 +14,7 @@ const Pizza = ({pizza,tamanho}) => {
    return (
       <div className={styles.pizzaContainer}>
         <p className={styles.pizzaNome}>{pizza.nome}</p>
-        <p className={styles.pizzaNome}>R$ {tamanho===1?pizza.grande.toFixed(2):pizza.broto.toFixed(2)}</p>
+        <p className={styles.pizzaNome}>R$ {tamanho===1?pizza.grande:pizza.broto}</p>
       </div>
    );
 }

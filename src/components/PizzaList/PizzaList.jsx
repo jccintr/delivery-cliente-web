@@ -10,7 +10,7 @@ const PizzaList = ({pizzas}) => {
   return (
     <div className={styles.container}>
        <div className={styles.items}>
-         {pizzas.map((produto)=>(<PizzaCard key={produto.id} produto={produto} sabor={sabor}/>))}
+         {pizzas.map((pizza)=>(<PizzaCard key={pizza.id} pizza={pizza} sabor={sabor}/>))}
        </div>
     </div>
   )

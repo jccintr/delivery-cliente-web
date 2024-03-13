@@ -8,10 +8,11 @@ import PizzaList from '../PizzaList/PizzaList';
 import data from '../../data/pizzas';
 
 const Pizzas = () => {
+  const {pizzas,setPizzas} = useContext(DataContext);
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
-  const [pizzas,setPizzas] = useState(data);
-  
+  //const [pizzas,setPizzas] = useState(data);
+  //console.log(pizzas);
 
   const onClearClick = () => {
     setSearch('');
