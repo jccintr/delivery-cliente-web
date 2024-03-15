@@ -40,8 +40,11 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
 
     useEffect(() => {
       CalculaTotal();
-    }, [quantidade,tamanhoPizza,pizzaSabor1,pizzaSabor2,saboresPizza]);
+    }, [quantidade,tamanhoPizza,pizzaSabor1,pizzaSabor2,saboresPizza,totalAdicional]);
    
+    useEffect(() => {
+      CalculaTotalAdicionais();
+    }, [tamanhoPizza]);
     
 
     const adicionarClick = () => { 
@@ -58,14 +61,14 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
       };
       
       const CalculaTotal = () => {
-      
+        console.log('total adicional ' + totalAdicional) 
         let total = 0
         if (saboresPizza === 1 && pizzaSabor1 !== null){
 
           if(tamanhoPizza===1){
-              total = quantidade * (pizzaSabor1.grande + totalAdicional);
+              total = quantidade * (parseFloat(pizzaSabor1.grande) + totalAdicional);
           } else {
-            total = quantidade * (pizzaSabor1.broto + totalAdicional);
+            total = quantidade * (parseFloat(pizzaSabor1.broto) + totalAdicional);
           }   
           setTotal(total);
           return;
@@ -75,16 +78,16 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
 
           if(tamanhoPizza===1){
             if(pizzaSabor2.grande > pizzaSabor1.grande){
-              total = quantidade * pizzaSabor2.grande;
+              total = quantidade * pizzaSabor2.grande + totalAdicional;
             } else {
-              total = quantidade * pizzaSabor1.grande;
+              total = quantidade * pizzaSabor1.grande + totalAdicional;
             }
           }
           else {
             if(pizzaSabor2.grande > pizzaSabor1.grande){
-              total = quantidade * pizzaSabor2.broto;
+              total = quantidade * pizzaSabor2.broto + totalAdicional;
             } else {
-              total = quantidade * pizzaSabor1.broto;
+              total = quantidade * pizzaSabor1.broto + totalAdicional;
             }
           }
           setTotal(total);
