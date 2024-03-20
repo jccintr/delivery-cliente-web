@@ -2,8 +2,8 @@ import React, { useState, useEffect,useContext} from 'react';
 import styles from "./styles.module.css";
 import { MdClose } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
-import Api from '../../Api';
-import SelectFieldGenerico from '../SelectFieldGenerico/SelectFieldGenerico';
+//import Api from '../../Api';
+import SelectBorda from '../SelectBorda/SelectBorda';
 import AdicionalPizzaCard from '../AdicionalPizzaCard/AdicionalPizzaCard';
 import DataContext from '../../context/DataContext';
 import MessageBox from '../MessageBox/MessageBox';
@@ -21,17 +21,22 @@ const Pizza = ({pizza,tamanho}) => {
 
 
 const AddPizza = ({itensPedido,addItemPedido}) => {
-    const {slug,pizzaSabor1,pizzaSabor2,tamanhoPizza,setTamanhoPizza,saboresPizza,setSaboresPizza,adicionaisPizza} = useContext(DataContext);
+    const {slug,pizzaSabor1,pizzaSabor2,tamanhoPizza,setTamanhoPizza,saboresPizza,setSaboresPizza,adicionaisPizza,bordas,produtoPizza} = useContext(DataContext);
+    console.log(produtoPizza);
     const navigate = useNavigate();
-    const params = useLocation();
+    //const params = useLocation();
+    //const {produto} = params.state;
     const [quantidade, setQuantidade] = useState(1);
-    const valorUnitario = 10.00 //produto.preco;
+    //const valorUnitario = 10.00 //produto.preco;
     const [totalAdicional,setTotalAdicional] = useState(0);
     const [total, setTotal] = useState(0);
     const [observacao,setObservacao] = useState('');
-    const [selectFields,setSelectFields] = useState([]);
+    //const [selectFields,setSelectFields] = useState([]);
     const [adicionais,setAdicionais] = useState([]);
+    const [dialogMessage,setDialogMessage] = useState('');
+    const [dialogVisible,setDialogVisible] = useState(false);
     const [titleMessageBox,setTitleMessageBox] = useState('');
+    const [bordaSelecionada,setBordaSelecionada] = useState(null);
    
 
     useEffect(() => {
@@ -40,7 +45,7 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
 
     useEffect(() => {
       CalculaTotal();
-    }, [quantidade,tamanhoPizza,pizzaSabor1,pizzaSabor2,saboresPizza,totalAdicional]);
+    }, [quantidade,tamanhoPizza,pizzaSabor1,pizzaSabor2,saboresPizza,totalAdicional,bordaSelecionada]);
    
     useEffect(() => {
       CalculaTotalAdicionais();
@@ -48,7 +53,38 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
     
 
     const adicionarClick = () => { 
+      
+
+
+      if(bordaSelecionada===null){
+        showModalDialog('Atenção','Selecione a borda da sua pizza por favor.');
+        return;
+      }
+      let obrigatorios = 'Borda : ' + bordaSelecionada.nome; 
+
+      let strAdicionais = '';
+      for(let i=0;i<adicionais.length;i++){
+         if(adicionais[i].selecionado){
+            if(tamanhoPizza===1){
+                strAdicionais += adicionais[i].nome + ' : ' + adicionais[i].grande + ';';
+            } else {
+              strAdicionais += adicionais[i].nome + ' : ' + adicionais[i].broto + ';';
+            }
+         }
+      }
+      strAdicionais = strAdicionais.slice(0,-1);
+      
+      const id = itensPedido.length > 0 ? itensPedido.length+1 : 1;
+      //const novoItemPedido = { id,quantidade,total,obrigatorios,adicionais: strAdicionais,observacao,produto };
+      //addItemPedido(novoItemPedido);
+      navigate(`/${slug}`);
     }
+
+    const showModalDialog = (title,mensagem) => {
+      setTitleMessageBox(title);
+      setDialogMessage(mensagem);
+      setDialogVisible(true);
+  }
 
     const IncreaseQuantity = () => {
         setQuantidade(quantidade + 1);
@@ -61,36 +97,62 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
       };
       
       const CalculaTotal = () => {
-        console.log('total adicional ' + totalAdicional) 
+        
         let total = 0
+        let totalItem = 0;
+
         if (saboresPizza === 1 && pizzaSabor1 !== null){
 
           if(tamanhoPizza===1){
-              total = quantidade * (parseFloat(pizzaSabor1.grande) + totalAdicional);
+              totalItem = parseFloat(pizzaSabor1.grande) + totalAdicional;
+              if(bordaSelecionada){
+                 totalItem+= parseFloat(bordaSelecionada.grande);
+              }   
           } else {
-            total = quantidade * (parseFloat(pizzaSabor1.broto) + totalAdicional);
-          }   
-          setTotal(total);
+              totalItem = parseFloat(pizzaSabor1.broto) + totalAdicional;
+              if(bordaSelecionada){
+                totalItem+= parseFloat(bordaSelecionada.broto);
+             }   
+          }
+          
+          setTotal(quantidade * totalItem);
           return;
         }
 
         if (saboresPizza === 2 && pizzaSabor1 !== null && pizzaSabor2 !== null){
 
           if(tamanhoPizza===1){
+
             if(pizzaSabor2.grande > pizzaSabor1.grande){
-              total = quantidade * pizzaSabor2.grande + totalAdicional;
+              totalItem = parseFloat(pizzaSabor2.grande) + totalAdicional;
+              if(bordaSelecionada){
+                totalItem+= parseFloat(bordaSelecionada.grande);
+             }   
             } else {
-              total = quantidade * pizzaSabor1.grande + totalAdicional;
+              totalItem =  parseFloat(pizzaSabor1.grande) + totalAdicional;
+              if(bordaSelecionada){
+                totalItem+= parseFloat(bordaSelecionada.grande);
+             }   
             }
+
           }
           else {
+
             if(pizzaSabor2.grande > pizzaSabor1.grande){
-              total = quantidade * pizzaSabor2.broto + totalAdicional;
+              totalItem = parseFloat(pizzaSabor2.broto) + totalAdicional;
+              if(bordaSelecionada){
+                totalItem+= parseFloat(bordaSelecionada.broto);
+             }
             } else {
-              total = quantidade * pizzaSabor1.broto + totalAdicional;
+              totalItem = parseFloat(pizzaSabor1.broto) + totalAdicional;
+              if(bordaSelecionada){
+                totalItem+= parseFloat(bordaSelecionada.broto);
+             }
             }
+
           }
-          setTotal(total);
+          
+          setTotal(quantidade * totalItem);
           return;
         }
 
@@ -136,6 +198,16 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
         setAdicionais(n);
    }
 
+   const onSelectBorda = (id) => {
+    
+    bordas.forEach(borda => {
+        if(borda.id === parseInt(id)) {
+           setBordaSelecionada(borda);
+        };
+    });
+    
+}  
+
 
   return (
     <main className={styles.container}>
@@ -164,6 +236,8 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
           <button className={styles.selectFlavorButton} onClick={()=>navigate("/pizzas",{ state: { sabor: 1 } })}>{!pizzaSabor1?saboresPizza===2?'Selecione o primeiro sabor':'Selecione o sabor':<Pizza pizza={pizzaSabor1} tamanho={tamanhoPizza}/>}</button>
           {saboresPizza===2&&<button className={styles.selectFlavorButton} onClick={()=>navigate("/pizzas",{ state: { sabor: 2 } })}>{!pizzaSabor2?'Selecione o segundo sabor':<Pizza pizza={pizzaSabor2} tamanho={tamanhoPizza}/>}</button>}
           
+          <SelectBorda bordas={bordas} label="Borda da Pizza:" tamanho={tamanhoPizza} onSelect={onSelectBorda}/>
+
           {adicionais.length>0&&<div className={styles.containerObservacao}>
             <p className={styles.observacaoLabel}>Adicione ingredientes:</p>
           </div>}
@@ -193,7 +267,7 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
             </div>
           </div>
         </div>
-        
+        {dialogVisible&&<MessageBox title={titleMessageBox} mensagem={dialogMessage} setDialogVisible={setDialogVisible}/>}
     </main>
   )
 }

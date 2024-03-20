@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:330px;
+    margin-bottom: 10px;
+}
+
+.label {
+    width: 310px;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+.selectContainer {
+    border: 0.5px solid lightgray;
+    padding: 5px;
+    
+}
+
+
+.select {
+    width: 312px;   
+    border: none;
+    outline: none;
+    background-color: white; 
+    height: 30px;
+    color: black;
+    
+}

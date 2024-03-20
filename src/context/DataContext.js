@@ -5,7 +5,9 @@ const DataContext = createContext({});
 
 export const DataProvider = ({children}) => {
     const [produtos, setProdutos] = useState([]);
+    const [produtoPizza, setProdutoPizza] = useState(null);
     const [pizzas, setPizzas] = useState([]);
+    const [bordas, setBordas] = useState([]);
     const [adicionaisPizza,setAdicionaisPizza] = useState([]);
     const [produtosBackup, setProdutosBackup] = useState([]);
     const [pizzaSabor1,setPizzaSabor1] = useState(null);
@@ -29,6 +31,7 @@ export const DataProvider = ({children}) => {
           setTenant(tenantData);
           setProdutos(tenantData.produtos);
           setPizzas(tenantData.pizzas);
+          setBordas(tenantData.bordas);
           setAdicionaisPizza(tenantData.adicional_pizza)
           setProdutosBackup(tenantData.produtos);
           setCategorias(tenantData.categorias);
@@ -74,7 +77,10 @@ export const DataProvider = ({children}) => {
         setSaboresPizza,
         pizzas,
         setPizzas,
-        adicionaisPizza
+        adicionaisPizza,
+        bordas,
+        produtoPizza,
+        setProdutoPizza
 
         //getProdutosError,
         //getCategoriasError,

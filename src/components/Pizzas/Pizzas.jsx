@@ -8,6 +8,8 @@ import PizzaList from '../PizzaList/PizzaList';
 import data from '../../data/pizzas';
 
 const Pizzas = () => {
+  const params = useLocation();
+  const {produto} = params.state;
   const {pizzas,setPizzas} = useContext(DataContext);
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
