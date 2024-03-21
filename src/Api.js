@@ -1,14 +1,14 @@
 
 
-const BASE_API = 'http://localhost:8000/api';
-//const BASE_API = 'http://192.168.0.106:8000/api';
+//const BASE_API = 'http://localhost:8000/api';
+const BASE_API = 'http://192.168.0.108:8000/api';
 //const BASE_API = 'https://brazped-api.js-software.tech/api';
 //const BASE_API = 'https://api.delivroo.app.br/api';
 
 export default {
 
-     base_storage: 'http://localhost:8000/storage',
-  //   base_storage: 'http://192.168.0.106:8000/storage',
+  //   base_storage: 'http://localhost:8000/storage',
+     base_storage: 'http://192.168.0.108:8000/storage',
 
 //  base_storage: 'https://brazped-api.js-software.tech/storage',
   //  base_storage: 'https://api.delivroo.app.br/storage',

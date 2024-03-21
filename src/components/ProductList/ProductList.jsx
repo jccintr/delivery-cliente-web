@@ -34,8 +34,8 @@ const ProductList = ({produtos}) => {
                      <div className={styles.items}>
                         {produtos.filter(
                             (produto) => produto.categoria_id === categoria.id
-                        ).map((produto) => (
-                            <ProductCard key={produto.id} produto={produto}/>
+                        ).map((produto,index,arr) => (
+                            <ProductCard last={index===(arr.length-1)} key={produto.id} produto={produto}/>
                         ))}
                         
                      </div>

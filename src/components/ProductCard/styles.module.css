@@ -4,6 +4,13 @@
     border-bottom: 0.5px solid lightgrey;
     align-items: center;
   }
+
+  .container_last {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
   
   .imageArea {
     display: flex;
@@ -60,9 +67,16 @@
      border: 0.5px solid lightgrey;
      border-radius: 10px;
      min-height: 100px;
-     
     }
+    .container_last {
+      border: 0.5px solid lightgrey;
+      border-radius: 10px;
+      min-height: 100px;
+     }
     .container:hover {
+      background-color:whitesmoke;
+    }
+    .container_last:hover {
       background-color:whitesmoke;
     }
   }

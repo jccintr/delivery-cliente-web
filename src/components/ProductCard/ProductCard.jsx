@@ -6,7 +6,7 @@ import DataContext from '../../context/DataContext';
 //import ModalDialog from '../ModalDialog/ModalDialog';
 import ModalClosed from '../ModalClosed/ModalClosed';
 
-const ProductCard = ({produto}) => {
+const ProductCard = ({produto,last}) => {
     const {tenant,setProdutoPizza,setPizzaSabor1,setPizzaSabor2,setTamanhoPizza,setSaboresPizza} = useContext(DataContext);
     const navigate = useNavigate();
     const [dialogMessage,setDialogMessage] = useState('');
@@ -37,7 +37,7 @@ const ProductCard = ({produto}) => {
     }
 
     return (
-        <div className={styles.container} onClick={onProductClick}>
+        <div className={!last?styles.container:styles.container_last} onClick={onProductClick}>
               {produto.imagem&&<div className={styles.imageArea}>
                   <img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${produto.imagem}`} />
               </div>}
