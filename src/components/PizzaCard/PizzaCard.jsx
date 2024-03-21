@@ -31,8 +31,8 @@ const PizzaCard = ({pizza,sabor}) => {
               <p className={styles.produtoNome}>{pizza.nome}</p>
               <div className={styles.produtoIngredientes}>{pizza.descricao}</div>
               <div className={styles.linhaPreco}>
-                  <div className={styles.preco}>Grande R$ {pizza.grande.toFixed(2)}</div>
-                  <div className={styles.preco}>Broto R$ {pizza.broto.toFixed(2)}</div>
+                  <div className={styles.preco}>Grande R$ {pizza.grande}</div>
+                  <div className={styles.preco}>Broto R$ {pizza.broto}</div>
               </div>
           </div>
           {dialogVisible&&<ModalClosed mensagem={dialogMessage} setDialogVisible={setDialogVisible}/>}
