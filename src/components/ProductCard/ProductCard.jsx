@@ -7,7 +7,7 @@ import DataContext from '../../context/DataContext';
 import ModalClosed from '../ModalClosed/ModalClosed';
 
 const ProductCard = ({produto}) => {
-    const {tenant,setProdutoPizza} = useContext(DataContext);
+    const {tenant,setProdutoPizza,setPizzaSabor1,setPizzaSabor2,setTamanhoPizza,setSaboresPizza} = useContext(DataContext);
     const navigate = useNavigate();
     const [dialogMessage,setDialogMessage] = useState('');
     const [dialogVisible,setDialogVisible] = useState(false);
@@ -16,6 +16,11 @@ const ProductCard = ({produto}) => {
         if (tenant.aberto){
             if(produto.pizza){
                 setProdutoPizza(produto);
+                setPizzaSabor1(null);
+                setPizzaSabor2(null);
+                setTamanhoPizza(1);
+                setSaboresPizza(1)
+
                 navigate("/pizza");
             } else {
                 navigate("/product", { state: { produto } });

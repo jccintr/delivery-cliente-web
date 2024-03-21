@@ -22,16 +22,11 @@ const Pizza = ({pizza,tamanho}) => {
 
 const AddPizza = ({itensPedido,addItemPedido}) => {
     const {slug,pizzaSabor1,pizzaSabor2,tamanhoPizza,setTamanhoPizza,saboresPizza,setSaboresPizza,adicionaisPizza,bordas,produtoPizza} = useContext(DataContext);
-    console.log(produtoPizza);
     const navigate = useNavigate();
-    //const params = useLocation();
-    //const {produto} = params.state;
     const [quantidade, setQuantidade] = useState(1);
-    //const valorUnitario = 10.00 //produto.preco;
     const [totalAdicional,setTotalAdicional] = useState(0);
     const [total, setTotal] = useState(0);
     const [observacao,setObservacao] = useState('');
-    //const [selectFields,setSelectFields] = useState([]);
     const [adicionais,setAdicionais] = useState([]);
     const [dialogMessage,setDialogMessage] = useState('');
     const [dialogVisible,setDialogVisible] = useState(false);
@@ -55,12 +50,34 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
     const adicionarClick = () => { 
       
 
+      if(saboresPizza===1 && pizzaSabor1===null){
+        showModalDialog('Atenção','Selecione o sabor de sua pizza por favor.');
+        return;
+      }
+
+      if(saboresPizza===2 && (pizzaSabor1===null || pizzaSabor2 === null)){
+        showModalDialog('Atenção','Selecione os dois sabores de sua pizza por favor.');
+        return;
+      }
 
       if(bordaSelecionada===null){
         showModalDialog('Atenção','Selecione a borda da sua pizza por favor.');
         return;
       }
-      let obrigatorios = 'Borda : ' + bordaSelecionada.nome; 
+
+      let obrigatorios = ''; 
+      if(tamanhoPizza===1){
+        obrigatorios += 'Tamanho : Grande;';
+      } else {
+        obrigatorios += 'Tamanho : Broto;';
+      }
+      if(saboresPizza===1){
+        obrigatorios += 'Inteira : ' + pizzaSabor1.nome + ';';
+      } else {
+        obrigatorios += '1/2 : ' + pizzaSabor1.nome + ';';
+        obrigatorios += '1/2 : ' + pizzaSabor2.nome + ';';
+      }
+      obrigatorios += 'Borda : ' + bordaSelecionada.nome; 
 
       let strAdicionais = '';
       for(let i=0;i<adicionais.length;i++){
@@ -75,8 +92,8 @@ const AddPizza = ({itensPedido,addItemPedido}) => {
       strAdicionais = strAdicionais.slice(0,-1);
       
       const id = itensPedido.length > 0 ? itensPedido.length+1 : 1;
-      //const novoItemPedido = { id,quantidade,total,obrigatorios,adicionais: strAdicionais,observacao,produto };
-      //addItemPedido(novoItemPedido);
+      const novoItemPedido = { id,quantidade,total,obrigatorios,adicionais: strAdicionais,observacao,produto: produtoPizza };
+      addItemPedido(novoItemPedido);
       navigate(`/${slug}`);
     }
 
