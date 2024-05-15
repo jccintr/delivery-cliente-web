@@ -143,7 +143,7 @@ const AddProduct = ({itensPedido,addItemPedido}) => {
           {produto.imagem&&<img className={styles.imagemProduto} alt="imagem do produto" src={`${Api.base_storage}/${produto.imagem}`}  />}
           <div className={styles.ingredientes}>{produto.descricao}</div>
           
-          {produto.obrigatorios.map( (obrigatorio,index)=>(<SelectFieldGenerico index={index} label={obrigatorio.nome} data={obrigatorio.opcoes} onSelect={onSelectChange}/>)) }
+          {produto.obrigatorios.map( (obrigatorio,index)=>(<SelectFieldGenerico key={index} index={index} label={obrigatorio.nome} data={obrigatorio.opcoes} onSelect={onSelectChange}/>)) }
           
           {produto.adicionais.length>0&&<div className={styles.containerObservacao}>
             <p className={styles.observacaoLabel}>Adicione ingredientes:</p>

@@ -118,7 +118,7 @@ const Checkout = ({itensPedido,setItensPedido}) => {
           setLastOrder(json.id); 
           setItensPedido([]);
           setIsLoading(false);
-          navigate('/ordersent',{state: {pedido: json}});
+          navigate('/ordersent',{state: {pedido: json,pix: formaPagamento=='Pix'?true:false}});
         } else {
         setIsLoading(false);
         navigate('/ordererror');
