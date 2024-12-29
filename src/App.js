@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {BrowserRouter,Routes, Route } from "react-router-dom";
 import { DataProvider } from "./context/DataContext";
 import './App.css';
@@ -17,10 +17,16 @@ import Horarios from './components/Horarios/Horarios';
 
 
 const App = () => {
-   
+    
    const [itensPedido, setItensPedido] = useState([]);
  
   
+
+/*
+      useEffect(() => {
+        document.title = "My new title"
+      }, [])
+*/
 
   const addItemPedido = (novoItemPedido) => {
     const novosItens = [...itensPedido, novoItemPedido];

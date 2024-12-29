@@ -8,8 +8,11 @@ import { FaClock,FaPhoneAlt } from "react-icons/fa";
 
 const Header = () => {
   const {tenant,loadingPage} = useContext(DataContext);
-  
+  document.title = tenant.name?tenant.name:'Delivroo';
   //console.log('loading='+loadingPage);
+  
+    
+
 
   const TempoEspera = () => {
     return (

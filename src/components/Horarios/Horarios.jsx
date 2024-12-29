@@ -13,8 +13,8 @@ const Horarios = () => {
         const days = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
         return (
             <div className={styles.horarioCard}>
-                <span>{days[horario.dia]}</span>
-                <span>{horario.horario}</span>
+                <span style={{color:new Date().getDay()===horario.dia?'red':'',fontWeight:new Date().getDay()===horario.dia?'bold':''}}>{days[horario.dia]}</span>
+                <span style={{color:new Date().getDay()===horario.dia?'red':'',fontWeight:new Date().getDay()===horario.dia?'bold':''}}>{horario.horario}</span>
             </div>
         )
     }
